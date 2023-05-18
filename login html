@@ -32,7 +32,7 @@
                         <h3><a>Esqueceu sua senha?</a></h3>
                     </div>
                     <div class="button-area">
-                        <button>Entrar</button>
+                        <button type="submit">Entrar</button>
                     </div>
                     <div class="new-account">
                         <h4>Precisando de uma conta?<span>Registre-se</span></h4>
