@@ -1,0 +1,131 @@
+.header {
+    background: #646B71;
+    font-family: 'Inter';
+}
+
+html {
+    height: 100vh;
+}
+
+body {
+    background-image: url(/Imagens/joanna-kosinska-7ACuHoezUYk-unsplash.jpg);
+    background-size: cover;
+    color: white;
+    font-family: 'Inter';
+    height: 100%;
+    overflow-y: hidden;
+}
+
+.card{
+    margin-top: 15em;
+}
+
+.card-content {
+    background-color: #36393F;
+    margin-top: 30em;
+    width: 26%;
+    min-width: 500px; 
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    padding: 30px;
+    border-radius: 6px;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+.card-header{
+    background-color: #36393F;
+    text-align: center;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-header h2 {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.user-area, .password-area {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.user-area {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+input {
+    background: #212327;
+    height: 1.75em;
+    padding: 16px 16px 16px 8px;
+    width: 100%;
+    border-radius: 3px;
+}
+
+.password-save a {
+    color: #7289DA;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.button-area {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    margin-top: 12px;
+    gap: 3px;
+}
+
+.button-area button {
+background: #4e66bc;
+color: white;
+padding: 10px;
+cursor: pointer;
+border-radius: 3px;
+transition: background-color 0.3s ease;
+}
+
+.button-area button:hover {
+    background: #3559bc;
+}
+
+.password-save a {
+    cursor: pointer;
+}
+
+.password-save a:hover {
+    text-decoration: underline;
+}
+
+.button-area span {
+    color: #7289DA;
+}
+
+.new-account h4 {
+    font-size: 14px;
+}
+
+.new-account span {
+    color: #7289DA;
+    cursor: pointer;
+}
+
+.new-account span:hover {
+    text-decoration: underline;
+}
+
+
+
+
+
+
+
+
+
+

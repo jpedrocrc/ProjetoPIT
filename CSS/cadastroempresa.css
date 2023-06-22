@@ -1,0 +1,135 @@
+body {
+    color: rgb(172, 172, 172);
+}
+
+html {
+    background-image: url(./php/joanna-kosinska-7ACuHoezUYk-unsplash.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    font-family: 'Inter';
+}
+
+.form-header {
+   display: flex;
+   flex-direction: column;
+
+
+}
+
+#tittle {
+   color: white;
+   font-size: 1.5em;
+   text-align: center;
+}
+
+.form-header {
+    display: flex;
+    flex-direction: column;
+    background-color: #36393F;
+    min-width: 300px;
+    max-width: 500px;
+    margin: auto;
+    border-radius: 10px;
+    margin-top: 1em;
+    padding: 20px;
+    gap: 3px;
+}
+
+.tittle h3 {
+    color: white;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.form-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+ .main-input  {
+    background: #212327;
+    height: 0.01em;
+    padding: 16px 16px 16px 8px;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+    color: white;
+ }
+ 
+
+ #estado {
+    background-color: #36393F;
+    color: white;
+    outline: none;
+    border: 0.1px solid #212327;
+    max-width: 26%;
+    min-width: 26%;
+ }
+
+ .text-footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+ }
+ .checkbox-label, .checkbox-label2 {
+    font-size: 14px;
+ }
+
+
+
+.text-footer {
+   display: flex;
+   flex-direction: row;
+   gap: 2px;
+   justify-content: center;
+}
+
+.text-footer h2 {
+   font-size: 10px;
+}
+
+#link-conect:hover {
+   text-decoration: underline;
+   color: #4e66bc;
+   cursor: pointer;
+}
+
+.input-submit {
+   background: #212327;
+   height: 0.01em;
+   padding: 16px 16px 16px 8px;
+   border-radius: 3px;
+   border: none;
+   outline: none;
+   color: white;
+}
+
+#button {
+   background: #4e66bc;
+   color: white;
+   padding: 10px 50px;
+   cursor: pointer;
+   border-radius: 3px;
+   transition: background-color 0.3s ease;
+   border: none;
+   margin-top: 14px;
+}
+
+#button:hover {
+   background: #3559bc;
+}
+
+#text-footer, #text-footer2 {
+   font-size:14px;
+}
+
+.footer {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}

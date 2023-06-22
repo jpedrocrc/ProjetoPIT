@@ -1,0 +1,28 @@
+#logoo {
+    width: 200px;
+}
+
+.main-content {
+    width: 26%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 250px;
+    margin-left: 150px;
+    color: white;
+}
+
+body {
+    background-image: url(mainimg.png);
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-attachment: fixed; 
+}
+
+.main-content input {
+    border: none;
+    outline: none;
+    line-height: 34px;
+    background-color: rgb(203, 203, 203);
+}
