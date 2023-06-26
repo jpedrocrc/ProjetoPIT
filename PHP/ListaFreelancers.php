@@ -2,6 +2,11 @@
 include_once './Classes/config.php';
 require_once './Classes/ConexaoBD.php';
 require_once './Classes/ListaFreelancers.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  $termoBusca = $_POST['termo_busca'];
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -78,9 +83,9 @@ require_once './Classes/ListaFreelancers.php';
     <img src="logo.png" alt="Logo" onclick="window.location.href='paginaprincipal.html'">
   </header>
   <div class="search-bar">
-    <form>
-      <input type="text" placeholder="Buscar freelancer">
-      <input type="submit" value="Buscar" href="">
+    <form method="POST">
+      <input type="text" placeholder="Buscar freelancer" name="termo_busca" value="<?php echo isset($termoBusca) ? $termoBusca : ''; ?>">
+      <input type="submit" value="Buscar">
     </form>
   </div>
 
@@ -90,7 +95,12 @@ require_once './Classes/ListaFreelancers.php';
     $conexao->conectar();
 
     $listaFreelancers = new ListaFreelancers($conexao);
-    $listaFreelancers->GetFreelancers();
+
+    if (isset($termoBusca) && !empty($termoBusca)) {
+      $listaFreelancers->PesquisarFreelancers($termoBusca);
+    } else {
+      $listaFreelancers->GetFreelancers();
+    }
 
     $conexao->fecharConexao();
     ?>

@@ -35,5 +35,23 @@ class ListaFreelancers
         echo '<p>Serviço: ' . $row['SERVICO'] . '</p>';
         echo '</div>';
     }
+
+    public function PesquisarFreelancers($busca)
+    {
+        $sql = "SELECT TALENTO.NOME, TALENTO.TELEFONE, TALENTO.EMAIL, SERVICO.DESCRICAO, SERVICO.SERVICO
+                FROM SERVICO
+                INNER JOIN TALENTO ON SERVICO.ID_FK = TALENTO.ID
+                WHERE TALENTO.NOME LIKE '%{$busca}%' OR SERVICO.DESCRICAO LIKE '%{$busca}%' OR SERVICO.SERVICO LIKE '%{$busca}%'";
+
+        $resultado = $this->conexao->executarConsulta($sql);
+
+        if ($this->conexao->obterNumLinhas($resultado) > 0) {
+            while ($row = $this->conexao->obterProximaLinha($resultado)) {
+                $this->MostrarFreelancers($row);
+            }
+        } else {
+            echo 'Nenhum freelancer encontrado.';
+        }
+    }
 }
 ?>
