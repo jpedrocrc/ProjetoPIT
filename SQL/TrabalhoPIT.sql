@@ -41,10 +41,23 @@ site varchar(150) not null,
 SENHA varchar(100)  not null
 );
 
+CREATE TABLE FREELANCERS(
+  ID_FREELANCER int primary key auto_increment not null,
+  ID_FK varchar(30) not null,
+  DESCRICAO varchar(255) not null,
+  SERVICO varchar(255) not null,
+  foreign key (ID_FK) references TALENTO(ID)
+);
+
 CREATE TABLE SERVICO(
-ID_SERVICO int primary key auto_increment not null,
-ID_FK varchar(30) not null,
-DESCRICAO varchar(255) not null,
-SERVICO varchar(255) not null,
-foreign key (ID_FK) references CONTRATANTE(ID)
+  ID_SERVICO int primary key auto_increment not null,
+  ID_FK varchar(30) not null,
+  NOME_EMPRESA varchar(250) not null,
+  DESCRICAO varchar(255) not null,
+  HORARIO timestamp not null,
+  HABILIDADES varchar(255) not null,
+  SERVICO varchar(255) not null,
+  VALOR float(9,2) not null,
+  CONTATO varchar(255) not null,
+  foreign key (ID_FK) references CONTRATANTE(ID)
 );
