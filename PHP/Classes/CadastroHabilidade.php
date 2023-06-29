@@ -1,5 +1,5 @@
 <?php
-class CadastrarServico
+class CadastrarHabilidade
 {
     private $conexao;
 
@@ -29,6 +29,7 @@ class CadastrarServico
         if ($result->num_rows > 0) {
             echo "Usuário já possui um serviço cadastrado.";
             header("Location:AtualizarServiços.php");
+            exit();
         }
 
         // Verifica se o formulário foi enviado
@@ -37,10 +38,12 @@ class CadastrarServico
             $servico = $_POST['servico'];
 
             // Prepara a consulta SQL
-            $sql = "INSERT INTO SERVICO (ID_FK, DESCRICAO, SERVICO) VALUES ('$idUsuario', '$descricao', '$servico')";
+            $sql = "INSERT INTO FREELANCERS (ID_FK, DESCRICAO, SERVICO) VALUES ('$idUsuario', '$descricao', '$servico')";
 
             // Executa a consulta SQL
-            if ($this->conexao->executarConsulta($sql) === TRUE) {
+            $resultado = $this->conexao->executarConsulta($sql);
+
+            if ($resultado === TRUE) {
                 header("Location: ListaFreelancers.php");
                 exit();
             } else {

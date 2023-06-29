@@ -1,5 +1,5 @@
 <?php
-class ListaFreelancers
+class ListaServicos
 {
     private $conexao;
 
@@ -8,24 +8,24 @@ class ListaFreelancers
         $this->conexao = $conexao;
     }
 
-    public function GetFreelancers()
+    public function GetServicos()
     {
-        $sql = "SELECT TALENTO.NOME, TALENTO.TELEFONE, TALENTO.EMAIL, FREELANCERS.DESCRICAO, FREELANCERS.SERVICO
-                FROM FREELANCERS
-                INNER JOIN TALENTO ON FREELANCERS.ID_FK = TALENTO.ID";
+        $sql = "SELECT TALENTO.NOME, TALENTO.TELEFONE, TALENTO.EMAIL, SERVICO.DESCRICAO, SERVICO.SERVICO
+                FROM SERVICO
+                INNER JOIN TALENTO ON SERVICO.ID_FK = TALENTO.ID";
 
         $resultado = $this->conexao->executarConsulta($sql);
 
         if ($this->conexao->obterNumLinhas($resultado) > 0) {
             while ($row = $this->conexao->obterProximaLinha($resultado)) {
-                $this->MostrarFreelancers($row);
+                $this->MostrarServicos($row);
             }
         } else {
             echo 'Nenhum freelancer encontrado.';
         }
     }
 
-    private function MostrarFreelancers($row)
+    private function MostrarServicos($row)
     {
         echo '<div class="freelancer">';
         echo '<h3>' . $row['NOME'] . '</h3>';
@@ -36,18 +36,18 @@ class ListaFreelancers
         echo '</div>';
     }
 
-    public function PesquisarFreelancers($busca)
+    public function PesquisarServicos($busca)
     {
-        $sql = "SELECT TALENTO.NOME, TALENTO.TELEFONE, TALENTO.EMAIL, FREELANCERS.DESCRICAO, FREELANCERS.SERVICO
-                FROM FREELANCERS
-                INNER JOIN TALENTO ON FREELANCERS.ID_FK = TALENTO.ID
-                WHERE TALENTO.NOME LIKE '%{$busca}%' OR FREELANCERS.DESCRICAO LIKE '%{$busca}%' OR FREELANCERS.SERVICO LIKE '%{$busca}%'";
+        $sql = "SELECT TALENTO.NOME, TALENTO.TELEFONE, TALENTO.EMAIL, SERVICO.DESCRICAO, SERVICO.SERVICO
+                FROM SERVICO
+                INNER JOIN TALENTO ON SERVICO.ID_FK = TALENTO.ID
+                WHERE TALENTO.NOME LIKE '%{$busca}%' OR SERVICO.DESCRICAO LIKE '%{$busca}%' OR SERVICO.SERVICO LIKE '%{$busca}%'";
 
         $resultado = $this->conexao->executarConsulta($sql);
 
         if ($this->conexao->obterNumLinhas($resultado) > 0) {
             while ($row = $this->conexao->obterProximaLinha($resultado)) {
-                $this->MostrarFreelancers($row);
+                $this->MostrarServicos($row);
             }
         } else {
             echo 'Nenhum freelancer encontrado.';
