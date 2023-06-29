@@ -1,4 +1,5 @@
 <?php
+ini_set( 'default_charset', 'UTF-8' );
 include_once './Classes/config.php';
 require_once './Classes/ConexaoBD.php';
 require_once './Classes/ListaFreelancers.php';

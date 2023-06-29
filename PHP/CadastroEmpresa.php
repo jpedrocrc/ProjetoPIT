@@ -1,4 +1,5 @@
 <?php
+ini_set( 'default_charset', 'UTF-8' );
 require_once './Classes/ConexaoBD.php';
 require_once './Classes/CadastrarEmpresa.php';
 include_once './Classes/config.php';

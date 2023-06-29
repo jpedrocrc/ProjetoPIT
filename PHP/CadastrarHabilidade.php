@@ -1,5 +1,5 @@
 <?php
-// Iniciar a sessão
+ini_set( 'default_charset', 'UTF-8' );
 
 //Chamando arquivos externos
 require_once './Classes/ConexaoBD.php';
