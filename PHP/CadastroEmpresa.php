@@ -1,5 +1,4 @@
 <?php
-ini_set( 'default_charset', 'UTF-8' );
 require_once './Classes/ConexaoBD.php';
 require_once './Classes/CadastrarEmpresa.php';
 include_once './Classes/config.php';
@@ -22,11 +21,13 @@ $conexaoBanco->fecharConexao();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="../css/cadastroempresa.css">
+    <link rel="stylesheet" type="text/css" href="../css/EmpresaeTalento.css">
     <link rel="stylesheet" type="text/css" href="reset.css"> 
-    <link rel="preconnect" href="https://fonts.googleapis.com%22%3E/
-<link rel=" preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com%22%3E/">
+    <link rel=" preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <style>
     header {
       background-color: #646B71;
@@ -38,93 +39,178 @@ $conexaoBanco->fecharConexao();
     header img {
       cursor: pointer;
     }
+    body {
+            color: white;
+    }
+
+    .main-input {
+        background-color: transparent;
+        border: solid 0.1px white;
+        padding: 10px;
+    }
   </style>
 </head>
 
-<body>
+<body class="bg-image" style="background-image: url('../PHP/joanna-kosinska-7ACuHoezUYk-unsplash.jpg');">
 <header>
         <img src="logo.png" alt="Logo" onclick="window.location.href='paginaprincipal.html'">
     </header>
     <div class="body-content">
-        <form method="POST" onsubmit="return validarFormulario()">
-            <div class="form-header">
-                <h1 id="tittle">Cadastro de Empresas</h1>
-                
-                <label for="nome">Nome:</label>
-                <input type="text" id="nome" name="nome" class="input-submit">
-
-                <label for="endereco">Endereço:</label>
-                <input type="text" id="endereco" name="endereco" class="input-submit">
-
-                <label for="bairro">Bairro:</label>
-                <input type="text" id="bairro" name="bairro" class="input-submit">
-
-                <label for="cidade">Cidade:</label>
-                <input type="text" id="cidade" name="cidade" class="input-submit">
-
-                <label for="numero">Numero:</label>
-                <input type="text" id="numero" name="numero" class="input-submit">
-
-                <label for="cep">CEP:</label>
-                <input type="text" id="cep" oninput="mascara_cep()" name="cep" maxlength="9" class="input-submit">
-
-                <label for="cnpj">CNPJ:</label>
-                <input type="text" id="cnpj" name="cnpj" oninput="mascara_cnpj()" maxlength="18" class="input-submit">
-
-                <label for="telefone">Telefone:</label>
-                <input type="text" id="telefone" oninput="mascara_telefone()" name="telefone" maxlength="15" class="input-submit">
-
-                <label for="site">Site:</label>
-                <input type="text" id="site" name="site" class="input-submit">
-
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" class="input-submit">
-
-                <label for="senha">Senha:</label>
-                <input type="password" id="senha" name="senha" class="input-submit">
-
-                <label for="estado">Selecione o estado:</label>
-                <select id="estado" name="estado">
-                    <option value="">Selecione...</option>
-                    <option value="AC">Acre</option>
-                    <option value="AL">Alagoas</option>
-                    <option value="AP">Amapá</option>
-                    <option value="AM">Amazonas</option>
-                    <option value="BA">Bahia</option>
-                    <option value="CE">Ceará</option>
-                    <option value="DF">Distrito Federal</option>
-                    <option value="ES">Espírito Santo</option>
-                    <option value="GO">Goiás</option>
-                    <option value="MA">Maranhão</option>
-                    <option value="MT">Mato Grosso</option>
-                    <option value="MS">Mato Grosso do Sul</option>
-                    <option value="MG">Minas Gerais</option>
-                    <option value="PA">Pará</option>
-                    <option value="PB">Paraíba</option>
-                    <option value="PR">Paraná</option>
-                    <option value="PE">Pernambuco</option>
-                    <option value="PI">Piauí</option>
-                    <option value="RJ">Rio de Janeiro</option>
-                    <option value="RN">Rio Grande do Norte</option>
-                    <option value="RS">Rio Grande do Sul</option>
-                    <option value="RO">Rondônia</option>
-                    <option value="RR">Roraima</option>
-                    <option value="SC">Santa Catarina</option>
-                    <option value="SP">São Paulo</option>
-                    <option value="SE">Sergipe</option>
-                    <option value="TO">Tocantins</option>
-                </select>
-                <input type="submit" value="Cadastrar" id="button" href="">
-                <div class="footer">
-                    <h2 id="text-footer">já tem uma conta?</h2>
-                    <a id="link-conect">
-                        <h2 id="text-footer2">Conecte-se</h2>
-                    </a>
-                    <span>.</span>
-            </div>
-            </div>
-        </form>
-     </div>
+        <div class="card-container">
+            <form method="POST" onsubmit="return validarFormulario()">
+                <div class="form-header">
+                        <div class="tittle mt-3 mb-3">
+                            <h3>Inscreva-se como Empresa</h3>
+                        </div>
+                        <div class="text-center mb-2">
+                            <button class="btn btn-light border-info rounded w-75 p-0">
+                                Entrar com Google
+                            </button>
+                        </div>
+                        <div class="text-center mb-2">
+                            <button class="btn btn-light border-secondary rounded w-75 p-0">
+                                Entrar com Apple
+                            </button>
+                        </div>
+                        <div class="container text-center mb-2 mt-3">
+                            <div class="row px-5">
+                                <div class="col border-bottom">
+                                </div>
+                                <div class="col border-bottom">
+                                </div>
+                                <div class="col border-bottom">
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="form-main">
+                            <div class="label-area w-100">
+                                <label for="user" class="form-label">Nome</label>
+                                <input type="text" class="main-input" id="user" name="nome">
+                            </div>
+                            <div class="container" style="margin-left: 50px">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="label-area px-0">
+                                            <label for="cnpj" class="form-label">CNPJ</label>
+                                            <input type="text" class="main-input" id="cnpj" oninput="mascara_cnpj()"
+                                                name="cnpj">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="label-area px-3">
+                                            <label for="cep" class="form-label">CEP</label>
+                                            <input type="text" class="main-input w-100" style="max-width: 160px" id="cep"oninput="mascara_cep()" name="cep">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="label-area w-100">
+                                <label for="endereco" class="form-label">Endereco</label>
+                                <input type="text" class="main-input" id="endereco" name="endereco">
+                            </div>
+                            <div class="container" style="margin-left: 50px">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="label-area px-0">
+                                            <label for="bairro" class="form-label">Bairro</label>
+                                            <input type="text" class="main-input" id="bairro" name="bairro">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="label-area px-3">
+                                            <label for="numero" class="form-label">Numero</label>
+                                            <input type="text" class="main-input w-100" style="max-width: 160px" id="numero" name="numero">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="label-area w-100">
+                                <label for="email-adress" class="form-label">Cidade</label>
+                                <input type="text" class="main-input" id="cidade" name="cidade">
+                            </div>
+                            <div class="label-area w-100">
+                                <label for="email-adress" class="form-label">Email</label>
+                                <input type="email" class="main-input" id="email-adress" name="email">
+                            </div>
+                            <div class="label-area w-100">
+                                <label for="site-adress" class="form-label">Site</label>
+                                <input type="text" class="main-input" id="site-adress" name="site">
+                            </div>
+                            <div class="label-area">
+                                <label for="tel-number" class="form-label">Telefone</label>
+                                <input type="tel" class="main-input" id="tel-number" oninput="mascara_telefone()"
+                                    name="telefone">
+                            </div>
+                            <div class="country-area">
+                                <label for="estado" class="form-label">Selecione o estado:</label>
+                                <select id="estado" name="estado" class="main-input" style="color: black">
+                                    <option value="">Selecione...</option>
+                                    <option value="AC">Acre</option>
+                                    <option value="AL">Alagoas</option>
+                                    <option value="AP">Amapá</option>
+                                    <option value="AM">Amazonas</option>
+                                    <option value="BA">Bahia</option>
+                                    <option value="CE">Ceará</option>
+                                    <option value="DF">Distrito Federal</option>
+                                    <option value="ES">Espírito Santo</option>
+                                    <option value="GO">Goiás</option>
+                                    <option value="MA">Maranhão</option>
+                                    <option value="MT">Mato Grosso</option>
+                                    <option value="MS">Mato Grosso do Sul</option>
+                                    <option value="MG">Minas Gerais</option>
+                                    <option value="PA">Pará</option>
+                                    <option value="PB">Paraíba</option>
+                                    <option value="PR">Paraná</option>
+                                    <option value="PE">Pernambuco</option>
+                                    <option value="PI">Piauí</option>
+                                    <option value="RJ">Rio de Janeiro</option>
+                                    <option value="RN">Rio Grande do Norte</option>
+                                    <option value="RS">Rio Grande do Sul</option>
+                                    <option value="RO">Rondônia</option>
+                                    <option value="RR">Roraima</option>
+                                    <option value="SC">Santa Catarina</option>
+                                    <option value="SP">São Paulo</option>
+                                    <option value="SE">Sergipe</option>
+                                    <option value="TO">Tocantins</option>
+                                </select>
+                            </div>
+                            <div class="label-area">
+                                <label for="passw" class="form-label">Senha</label>
+                                <input type="password" class="main-input" id="passw" name="senha">
+                            </div>
+                        </div>
+                        <div class="form-footer">
+                        <div class="info1-area">
+                            <label for="att-check" class="checkbox-label"><input type="checkbox" id="att-check"
+                                    class="checkbox-input me-2">Envie-me e-mails com dicas sobre como
+                                encontrar
+                                talentos que atendam às
+                                minhas necessidades.</label>
+                        </div>
+                        <div class="info2-area">
+                            <label for="att-check2" class="checkbox-label2 align-text-top"><input type="checkbox"
+                                    id="att-check2" class="checkbox-input2 me-2"> Sim, eu entendo e concordo com os
+                                Termos de
+                                Serviço do HireGeniuses,
+                                incluindo o Contrato do Usuário e a Política de Privacidade.</label>
+                        </div>
+                    </div>
+                    <div class="form-footer2">
+                        <div class="p-3 text-lg-center">
+                            <button type="button" class="btn btn-light fs-5  px-5" href="">Cadastrar</button>
+                        </div>
+                        <div class="text-footer">
+                            <h2>Já tem uma conta?</h2>
+                            <a id="link-conect">
+                                <h2>Faça Login</h2>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
    </div>
    <script>
         function validarFormulario() {
