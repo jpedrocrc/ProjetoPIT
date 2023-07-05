@@ -10,9 +10,9 @@ class ListaServicos
 
     public function GetServicos()
     {
-        $sql = "SELECT TALENTO.NOME, TALENTO.TELEFONE, TALENTO.EMAIL, SERVICO.DESCRICAO, SERVICO.SERVICO
-                FROM SERVICO
-                INNER JOIN TALENTO ON SERVICO.ID_FK = TALENTO.ID";
+        $sql = "SELECT CONTRATANTE.NOME, CONTRATANTE.TELEFONE, CONTRATANTE.EMAIL, SERVICO.DESCRICAO, SERVICO.SERVICO, CONTRATANTE.ENDERECO, CONTRATANTE.CIDADE, CONTRATANTE.BAIRRO
+        FROM SERVICO
+        INNER JOIN CONTRATANTE ON SERVICO.ID_FK = CONTRATANTE.ID";
 
         $resultado = $this->conexao->executarConsulta($sql);
 
@@ -21,7 +21,7 @@ class ListaServicos
                 $this->MostrarServicos($row);
             }
         } else {
-            echo 'Nenhum freelancer encontrado.';
+            echo 'Nenhum serviço encontrado.';
         }
     }
 
@@ -31,6 +31,9 @@ class ListaServicos
         echo '<h3>' . $row['NOME'] . '</h3>';
         echo '<p>Email: ' . $row['EMAIL'] . '</p>';
         echo '<p>Telefone: ' . $row['TELEFONE'] . '</p>';
+        echo '<p>Endereço: ' . $row['ENDERECO'] . '</p>';
+        echo '<p>Cidade: ' . $row['CIDADE'] . '</p>';
+        echo '<p>Bairro: ' . $row['BAIRRO'] . '</p>';
         echo '<p>Descrição: ' . $row['DESCRICAO'] . '</p>';
         echo '<p>Serviço: ' . $row['SERVICO'] . '</p>';
         echo '</div>';
@@ -38,10 +41,11 @@ class ListaServicos
 
     public function PesquisarServicos($busca)
     {
-        $sql = "SELECT TALENTO.NOME, TALENTO.TELEFONE, TALENTO.EMAIL, SERVICO.DESCRICAO, SERVICO.SERVICO
-                FROM SERVICO
-                INNER JOIN TALENTO ON SERVICO.ID_FK = TALENTO.ID
-                WHERE TALENTO.NOME LIKE '%{$busca}%' OR SERVICO.DESCRICAO LIKE '%{$busca}%' OR SERVICO.SERVICO LIKE '%{$busca}%'";
+        $sql = "SELECT CONTRATANTE.NOME, CONTRATANTE.TELEFONE, CONTRATANTE.EMAIL, SERVICO.DESCRICAO, SERVICO.SERVICO, CONTRATANTE.ENDERECO, CONTRATANTE.CIDADE, CONTRATANTE.BAIRRO
+        FROM SERVICO
+        INNER JOIN CONTRATANTE ON SERVICO.ID_FK = CONTRATANTE.ID
+        WHERE CONTRATANTE.NOME LIKE '%{$busca}%' OR SERVICO.DESCRICAO LIKE '%{$busca}%' OR SERVICO.SERVICO LIKE '%{$busca}%' OR CONTRATANTE.CIDADE LIKE '%{$busca}%'";
+
 
         $resultado = $this->conexao->executarConsulta($sql);
 
@@ -50,7 +54,7 @@ class ListaServicos
                 $this->MostrarServicos($row);
             }
         } else {
-            echo 'Nenhum freelancer encontrado.';
+            echo 'Nenhum serviço encontrado.';
         }
     }
 }

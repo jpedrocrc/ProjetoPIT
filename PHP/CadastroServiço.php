@@ -1,23 +1,24 @@
 <?php
-ini_set( 'default_charset', 'UTF-8' );
+ini_set('default_charset', 'UTF-8');
 
-//Chamando arquivos externos
+// Chamando arquivos externos
 require_once './Classes/ConexaoBD.php';
 include_once './Classes/config.php';
 require_once './Classes/CadastrarServico.php';
 session_start();
 
-//Classe ConexaoBD
+// Classe ConexaoBD
 $conexaoBanco = new ConexaoBD($nomeServidor, $nomeUsuario, $senha, $nomeBanco);
 $conexaoBanco->conectar();
 
-//classe CadastrarServico
+// classe CadastrarServico
 $cadastrarServico = new CadastrarServico($conexaoBanco);
 $cadastrarServico->verificarUsuarioLogado();
 $cadastrarServico->cadastrar();
 
 $conexaoBanco->fecharConexao();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -90,10 +91,66 @@ $conexaoBanco->fecharConexao();
             <option value="Tradução">Tradução</option>
             <option value="Vídeo e Edição">Vídeo e Edição</option>
             <option value="Web Design">Web Design</option>
-        </select>
+        </select><br>
 
-        <input type="submit" value="Registrar" href="">
+        <label for="nomeEmpresa">Nome da Empresa:</label><br>
+        <input type="text" id="nomeEmpresa" name="nomeEmpresa"><br>
+
+        <label for="horario">Horário:</label><br>
+        <input type="time" id="horario" name="horario" onsubmit="validarFormulario()"><br>
+
+        <label for="habilidades">Habilidades:</label><br>
+        <input type="checkbox" name="habilidades[]" value="Inglês"> Inglês<br>
+        <input type="checkbox" name="habilidades[]" value="Competência"> Competência<br>
+        <input type="checkbox" name="habilidades[]" value="Criatividade"> Criatividade<br>
+        <input type="checkbox" name="habilidades[]" value="Comunicação"> Comunicação<br>
+        <input type="checkbox" name="habilidades[]" value="Resolução de Problemas"> Resolução de Problemas<br>
+        <input type="checkbox" name="habilidades[]" value="Trabalho em Equipe"> Trabalho em Equipe<br>
+        <input type="checkbox" name="habilidades[]" value="Pensamento Analítico"> Pensamento Analítico<br>
+        <input type="checkbox" name="habilidades[]" value="Gestão de Tempo"> Gestão de Tempo<br>
+        <input type="checkbox" name="habilidades[]" value="Liderança"> Liderança<br>
+        <input type="checkbox" name="habilidades[]" value="Negociação"> Negociação<br>
+        <input type="checkbox" name="habilidades[]" value="Adaptabilidade"> Adaptabilidade<br>
+        <input type="checkbox" name="habilidades[]" value="Empatia"> Empatia<br>
+        <input type="checkbox" name="habilidades[]" value="Organização"> Organização<br>
+        <input type="checkbox" name="habilidades[]" value="Aprendizado Contínuo"> Aprendizado Contínuo<br>
+        <input type="checkbox" name="habilidades[]" value="Pensamento Criativo"> Pensamento Criativo<br>
+        <input type="checkbox" name="habilidades[]" value="Gestão de Projetos"> Gestão de Projetos<br>
+        <input type="checkbox" name="habilidades[]" value="Habilidades Interpessoais"> Habilidades Interpessoais<br>
+        <input type="checkbox" name="habilidades[]" value="Trabalho Sob Pressão"> Trabalho Sob Pressão<br>
+        <input type="checkbox" name="habilidades[]" value="Tomada de Decisão"> Tomada de Decisão<br>
+        <input type="checkbox" name="habilidades[]" value="Paciência"> Paciência<br>
+        <input type="checkbox" name="habilidades[]" value="Resiliência"> Resiliência<br>
+        <input type="checkbox" name="habilidades[]" value="Facilidade de Comunicação"> Facilidade de Comunicação<br>
+        <input type="checkbox" name="habilidades[]" value="Empreendedorismo"> Empreendedorismo<br>
+        <input type="checkbox" name="habilidades[]" value="Habilidades Analíticas"> Habilidades Analíticas<br>
+        <input type="checkbox" name="habilidades[]" value="Flexibilidade"> Flexibilidade<br>
+        <input type="checkbox" name="habilidades[]" value="Organização de Eventos"> Organização de Eventos<br>
+
+        <label for="valor">Valor:</label><br>
+        <input type="text" id="valor" name="valor"><br>
+
+        <label for="contato">Contato:</label><br>
+        <input type="text" id="contato" name="contato"><br>
+
+        <input type="submit" value="Registrar">
     </form>
+
+    <script>
+        function validarFormulario() {
+            const horarioInput = document.getElementById('horario');
+            const horarioPattern = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
+
+            if (horarioPattern.test(horarioInput.value)) {
+                // O horário é válido, envie o formulário
+                return true;
+            } else {
+                // O horário é inválido, exiba uma mensagem de erro
+                alert('Insira um horário válido no formato HH:MM');
+                return false;
+            }
+        }
+    </script>
 </body>
 
 </html>

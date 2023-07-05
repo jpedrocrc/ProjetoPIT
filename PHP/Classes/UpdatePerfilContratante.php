@@ -18,7 +18,7 @@ class UpdatePerfilContratante
     public function verificaPermissoes()
     {
         if (!isset($_SESSION['permissao']) || $_SESSION['permissao'] !== 'contratante') {
-            header("Location:PaginaUpdate.php");
+            header("Location:PaginaUpdateTalento.php");
             exit;
         }
     }

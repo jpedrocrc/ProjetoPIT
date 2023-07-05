@@ -2,7 +2,7 @@
 ini_set( 'default_charset', 'UTF-8' );
 include_once './Classes/config.php';
 require_once './Classes/ConexaoBD.php';
-require_once './Classes/ListaFreelancers.php';
+require_once './Classes/ListaServiços.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $termoBusca = $_POST['termo_busca'];
@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html>
 
 <head>
-  <title>Freelancers Disponíveis</title>
+  <title>Serviços Disponiveis</title>
   <style>
     /* Estilos gerais */
     body {
@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   </header>
   <div class="search-bar">
     <form method="POST">
-      <input type="text" placeholder="Buscar freelancer" name="termo_busca" value="<?php echo isset($termoBusca) ? $termoBusca : ''; ?>">
+      <input type="text" placeholder="Buscar serviço" name="termo_busca" value="<?php echo isset($termoBusca) ? $termoBusca : ''; ?>">
       <input type="submit" value="Buscar">
     </form>
   </div>
@@ -95,12 +95,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $conexao = new ConexaoBD($nomeServidor, $nomeUsuario, $senha, $nomeBanco);
     $conexao->conectar();
 
-    $listaFreelancers = new ListaFreelancers($conexao);
+    $ListaServicos = new ListaServicos($conexao);
 
     if (isset($termoBusca) && !empty($termoBusca)) {
-      $listaFreelancers->PesquisarFreelancers($termoBusca);
+      $ListaServicos->PesquisarServicos($termoBusca);
     } else {
-      $listaFreelancers->GetFreelancers();
+      $ListaServicos->GetServicos();
     }
 
     $conexao->fecharConexao();

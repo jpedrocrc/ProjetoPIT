@@ -1,63 +1,56 @@
 <?php
 ini_set( 'default_charset', 'UTF-8' );
-// Chamando arquivos externos
+
+//Chamando arquivos externos
 require_once './Classes/ConexaoBD.php';
 include_once './Classes/config.php';
-require_once './Classes/AtualizarServiços.php';
+require_once './Classes/CadastrarHabilidade.php';
+session_start();
 
-// Criação da instância de conexão
+//Classe ConexaoBD
 $conexaoBanco = new ConexaoBD($nomeServidor, $nomeUsuario, $senha, $nomeBanco);
 $conexaoBanco->conectar();
 
-// Verifica se o usuário está logado
-session_start();
-$AtualizarServiços = new AtualizarServiços($conexaoBanco);
-$AtualizarServiços->processarAcoesFormulario();
-$dadosServico = $AtualizarServiços->obterServico();
-$AtualizarServiços->exibirInformacoesServico($dadosServico);
+//classe CadastrarHabilidade
+$CadastrarHabilidade = new CadastrarHabilidade($conexaoBanco);
+$CadastrarHabilidade->verificarUsuarioLogado();
+$CadastrarHabilidade->cadastrar();
+$CadastrarHabilidade->verificaPermissoes();
+$conexaoBanco->fecharConexao();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../css/cadastroservico.css">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="cadastroservico.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com%22%3E/
-<link rel=" preconnect" href="https://fonts.gstatic.com/" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300&display=swap" rel="stylesheet">
     <style>
-    header {
-      background-color: #646B71;
-      padding: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    header img {
-      cursor: pointer;
-    }
-  </style>
+        header {
+            background-color: #646B71;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        header img {
+            cursor: pointer;
+        }
+    </style>
 </head>
-<body>
-    
-</body>
-</html>
 
 <body>
-<header>
-    <img src="logo.png" alt="Logo" onclick="window.location.href='paginaprincipal.html'">
-  </header>
-    <div class="body-content">
-    <h1 id="tittle">Registro de Serviço</h1>
+    <header>
+        <img src="logo.png" alt="Logo" onclick="window.location.href='paginaprincipal.html'">
+    </header>
+    <h1>Registro de Serviço</h1>
 
     <form method="POST" onsubmit="return validarFormulario()">
-        <div class="escolha-servico">
-        <label for="descricao">Insira uma descrição do seu serviço:</label>
-        <textarea name="descricao" rows="5" cols="50"></textarea>
-    </div>
+        <label for="descricao">Insira uma descrição do seu serviço:</label><br>
+        <textarea name="descricao" rows="5" cols="50"></textarea><br>
 
         <label for="servico">Tipo de Serviço:</label><br>
         <select id="servico" name="servico" required>
@@ -98,11 +91,9 @@ $AtualizarServiços->exibirInformacoesServico($dadosServico);
             <option value="Vídeo e Edição">Vídeo e Edição</option>
             <option value="Web Design">Web Design</option>
         </select>
-        <div class="button-submit">
-        <input type="submit" value="Registrar" id="button">
-        </div>
+
+        <input type="submit" value="Registrar" href="">
     </form>
-</div>
 </body>
 
 </html>
