@@ -4,7 +4,7 @@ include_once './Classes/config.php';
 require_once './Classes/UpdatePerfilTalento.php';
 
 $conexaoBanco = new ConexaoBD($nomeServidor, $nomeUsuario, $senha, $nomeBanco);
-$conexaoBanco->conectar();
+ $conexaoBanco->conectar();
 // Iniciar a sessão
 session_start();
 $UpdatePerfilTalento = new UpdatePerfilTalento($conexaoBanco);
@@ -23,9 +23,11 @@ $dadosTalento = $UpdatePerfilTalento->obterDados();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="../css/upadate_pagina.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com%22%3E/
-<link rel=" preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com%22%3E/">
+    <link rel=" preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <style>
     header {
       background-color: #646B71;
@@ -40,34 +42,36 @@ $dadosTalento = $UpdatePerfilTalento->obterDados();
   </style>
 </head>
 
-<body>
+<body class="bg-image" style="background-image: url('..\PHP\joanna-kosinska-7ACuHoezUYk-unsplash.jpg')">
 <header>
         <img src="logo.png" alt="Logo" onclick="window.location.href='paginaprincipal.html'">
     </header>
-    <div class="content-card">
-    <div class="tittle"><h1>Alterar Dados de Perfil</h1></div>
+    <div class="card bg-dark text-white position-absolute top-50 start-50 translate-middle p-2">
+    <h3 class="mb-4 p-2">Alterar os Dados do Perfil</h3>
     <form method="POST" onsubmit="return validarFormulario()">
-        <div class="form-content">
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" class="forms-input"
-            value="<?php echo isset($dadosTalento['NOME']) ? $dadosTalento['NOME'] : ""; ?>">
-        <br>
-        <label for="telefone">Telefone:</label>
-        <input type="text" id="telefone" name="telefone" oninput="mascara_telefone()" class="forms-input"
-            value="<?php echo isset($dadosTalento['TELEFONE']) ? $dadosTalento['TELEFONE'] : ""; ?>">
-        <br>
-        <label for="CPF">CPF:</label>
-        <input type="text" id="CPF" name="cpf" oninput="mascara_cpf()" class="forms-input"
-            value="<?php echo isset($dadosTalento['CPF']) ? $dadosTalento['CPF'] : ""; ?>">
-        <br>
-        <label for="CEP">CEP:</label>
-        <input type="text" id="CEP" name="cep" oninput="mascara_cep()" class="forms-input"
-            value="<?php echo isset($dadosTalento['CEP']) ? $dadosTalento['CEP'] : ""; ?>">
-        <br>
-        <input type="submit" value="Atualizar Dados" id="button" href="">
-    </div>
+      <div class="mb-3">
+        <label for="nome" class="form-label">Nome</label>
+        <input type="text" class="form-control" id="nome" placeholder="Digite seu nome" value="<?php echo isset($dadosTalento['NOME']) ? $dadosTalento['NOME'] : ""; ?>">
+      </div>
+      <div class="mb-3">
+        <label for="telefone" class="form-label">Telefone</label>
+        <input type="text" class="form-control" id="telefone" placeholder="Digite seu telefone" 
+        value="<?php echo isset($dadosTalento['TELEFONE']) ? $dadosTalento['TELEFONE'] : ""; ?>">
+      </div>
+      <div class="mb-3">
+        <label for="cpf" class="form-label">CPF</label>
+        <input type="text" class="form-control" id="CPF" placeholder="Digite seu CPF"
+        value="<?php echo isset($dadosTalento['CPF']) ? $dadosTalento['CPF'] : ""; ?>">
+      </div>
+      <div class="mb-3">
+        <label for="cep" class="form-label">CEP</label>
+        <input type="text" class="form-control" id="CEP" placeholder="Digite seu CEP"
+        value="<?php echo isset($dadosTalento['CEP']) ? $dadosTalento['CEP'] : ""; ?>">
+      </div>
+      <div class="text-center">
+      <button type="submit" class="btn mt-3 btn-light">Atualizar Dados</button></div>
     </form>
-</div>
+  </div>
     <script>
         function validarFormulario() {
             var nome = document.getElementById("nome").value;

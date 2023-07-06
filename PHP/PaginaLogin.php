@@ -1,5 +1,5 @@
 <?php
-ini_set( 'default_charset', 'UTF-8' );
+ini_set( 'default_charset', 'UTF-8');
 require_once './Classes/ConexaoBD.php';
 require_once './Classes/Autenticacao.php';
 include_once './Classes/config.php';
@@ -27,61 +27,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="../CSS/style.css">
-    <link rel="stylesheet" type="text/css" href="CSS\reset.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com%22%3E/
-<link rel=" preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <!--<link rel="stylesheet" type="text/css" href="CSS\EmpresaeTalento.css">
+    <link rel="stylesheet" type="text/css" href="CSS\style.css">
+    <link rel="stylesheet" type="text/css" href="CSS\reset.css">-->
+    <link rel="preconnect" href="https://fonts.googleapis.com%22%3E/">
+    <link rel=" preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300&display=swap" rel="stylesheet">
-    <style>
-    header {
-      background-color: #646B71;
-      padding: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    header img {
-      cursor: pointer;
-    }
-  </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
-<body>
-<header>
-        <img src="logo.png" alt="Logo" onclick="window.location.href='paginaprincipal.html'">
-    </header>
-    <div class="card">
-        <div class="card-content">
-            <div class="card-header">
-                <h2>Bem-vindo de volta!</h2>
-                <p>Estamos entusiasmados por tê-lo de volta!</p>
-            </div>
-            <form method="POST" onsubmit="return validarFormulario()">
-                <div class="user-area">
-                    <label>E-mail ou número de telefone</label>
-                    <input type="email" id="email" name="email">
-                </div>
-                <div class="password-area">
-                    <label>Senha</label>
-                    <input type="password" id="password" name="senha">
-                </div>
-                <div class="password-save">
-                    <h3><a>Esqueceu sua senha?</a></h3>
-                </div>
-                <div class="button-area">
-                    <button type="submit" href="">Entrar</button>
-                </div>
-                <div class="new-account">
-                    <h4>Precisando de uma conta?<span>Registre-se</span></h4>
-                </div>
-            </form>
-        </div>
+<body class="bg-image" style="background-image: url('../PHP/mainimg.png'); height: 100vh">
+<div class="container">
+    <div class="card text-white bg-dark position-absolute top-50 start-50 translate-middle" style="max-width: 400px;">
+      <div class="card-body">
+        <h5 class="card-title">Bem-vindo de volta!</h5>
+        <p class="card-text">Estamos entusiasmados por tê-lo de volta!</p>
+        <form>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Digite seu email">
+          </div>
+          <div class="mb-3">
+            <label for="senha" class="form-label">Senha</label>
+            <input type="password" class="form-control" id="senha" placeholder="Digite sua senha">
+          </div>
+          <div class="mb-3">
+            <a href="#" class="text-decoration-none text-white">Esqueceu a senha?</a>
+          </div>
+          <button type="submit" class="btn form-control btn-light">Entrar</button>
+        </form>
+      </div>
     </div>
+  </div>
     <script>
         function validarFormulario() {
             var email = document.getElementById("email").value;
@@ -102,5 +84,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     </script>
 </body>
-
 </html>

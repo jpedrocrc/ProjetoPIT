@@ -122,7 +122,7 @@ $conexaoBanco->fecharConexao();
                         </div>
                         <div class="country-area">
                             <label for="paises" class="form-label">Selecione um país:</label>
-                            <select id="paises" name="pais" class="main-input">
+                            <select id="paises" name="pais" class="main-input" style="color:black">
                                 <option value="NULL">Selecione ...</option>
                                 <option value="DE">Alemanha</option>
                                 <option value="AR">Argentina</option>
