@@ -42,7 +42,7 @@ $dadosTalento = $UpdatePerfilTalento->obterDados();
 
 <body>
 <header>
-        <img src="logo.png" alt="Logo" onclick="window.location.href='paginaprincipal.html'">
+        <img src="logo.png" alt="Logo" onclick="window.location.href='paginaprincipal.php'">
     </header>
     <div class="content-card">
     <div class="tittle"><h1>Alterar Dados de Perfil</h1></div>

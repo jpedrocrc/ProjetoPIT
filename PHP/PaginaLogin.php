@@ -47,14 +47,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <div class="card-body">
         <h5 class="card-title">Bem-vindo de volta!</h5>
         <p class="card-text">Estamos entusiasmados por tê-lo de volta!</p>
-        <form>
+        <form method="POST" onsubmit="return validarFormulario()">
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" placeholder="Digite seu email">
+            <input type="email" class="form-control" id="email" placeholder="Digite seu email"name="email">
           </div>
           <div class="mb-3">
             <label for="senha" class="form-label">Senha</label>
-            <input type="password" class="form-control" id="senha" placeholder="Digite sua senha">
+            <input type="password" class="form-control" id="senha" placeholder="Digite sua senha"name="senha">
           </div>
           <div class="mb-3">
             <a href="#" class="text-decoration-none text-white">Esqueceu a senha?</a>

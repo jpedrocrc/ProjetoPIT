@@ -24,12 +24,15 @@ class Autenticacao
             $row = $this->conexao->obterProximaLinha($resultado);
             $tipoUsuario = $row['tipo'];
             $senhaArmazenada = $row['senha'];
+            $nomeUsuario = $row['nome'];
 
             if (password_verify($senha, $senhaArmazenada)) {
                 $this->idUsuario = $row['ID'];
                 $_SESSION['idUsuario'] = $this->idUsuario;
-                $_SESSION['permissao'] = $tipoUsuario; // Armazena o tipo de usuário na variável de sessão
+                $_SESSION['Nome'] = $nomeUsuario;
+                $_SESSION['permissao'] = $tipoUsuario;
                 echo "Login bem-sucedido!";
+                header("Location:paginaprincipal.php ");
             } else {
                 echo "Login ou senha incorreto";
             }

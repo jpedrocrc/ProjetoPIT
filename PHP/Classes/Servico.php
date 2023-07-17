@@ -78,6 +78,7 @@ class Servico
             echo "Serviço: " . $dadosServico['SERVICO'] . "<br>";
         } else {
             echo "Você não possui um serviço cadastrado.";
+            header("Location: CadastroServiço.php");
         }
     }
 }

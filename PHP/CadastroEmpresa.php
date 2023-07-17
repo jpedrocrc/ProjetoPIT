@@ -53,9 +53,9 @@ $conexaoBanco->fecharConexao();
     </style>
 </head>
 
-<body class="bg-image" style="background-image: url('../PHP/joanna-kosinska-7ACuHoezUYk-unsplash.jpg');">
+<body class="bg-image" style="background-image: url('../PHP/mainimg.png'); height: 100vh">
     <header>
-        <img src="logo.png" alt="Logo" onclick="window.location.href='paginaprincipal.html'">
+        <img src="logo.png" alt="Logo" onclick="window.location.href='paginaprincipal.php'">
     </header>
     <div class="body-content">
         <div class="card-container">
@@ -96,14 +96,14 @@ $conexaoBanco->fecharConexao();
                                     <div class="label-area px-0">
                                         <label for="cnpj" class="form-label">CNPJ</label>
                                         <input type="text" class="main-input" id="cnpj" oninput="mascara_cnpj()"
-                                            name="cnpj">
+                                            name="cnpj" maxlength="18">
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="label-area px-3">
                                         <label for="cep" class="form-label">CEP</label>
                                         <input type="text" class="main-input w-100" style="max-width: 160px" id="cep"
-                                            oninput="mascara_cep()" name="cep">
+                                            oninput="mascara_cep()" name="cep" maxlength="9">
                                     </div>
                                 </div>
                             </div>
@@ -144,7 +144,7 @@ $conexaoBanco->fecharConexao();
                         <div class="label-area">
                             <label for="tel-number" class="form-label">Telefone</label>
                             <input type="tel" class="main-input" id="telefone" oninput="mascara_telefone()"
-                                name="telefone">
+                                name="telefone" maxlength="15">
                         </div>
                         <div class="country-area">
                             <label for="estado" class="form-label">Selecione o estado:</label>
@@ -185,13 +185,13 @@ $conexaoBanco->fecharConexao();
                         </div>
                     </div>
                     <div class="form-footer">
-                        <div class="info1-area">
+                        <!-- <div class="info1-area">
                             <label for="att-check" class="checkbox-label"><input type="checkbox" id="att-check"
                                     class="checkbox-input me-2">Envie-me e-mails com dicas sobre como
                                 encontrar
                                 talentos que atendam às
                                 minhas necessidades.</label>
-                        </div>
+                        </div> -->
                         <div class="info2-area">
                             <label for="att-check2" class="checkbox-label2 align-text-top"><input type="checkbox"
                                     id="att-check2" class="checkbox-input2 me-2"> Sim, eu entendo e concordo com os
@@ -202,7 +202,7 @@ $conexaoBanco->fecharConexao();
                     </div>
                     <div class="form-footer2">
                         <div class="p-3 text-lg-center">
-                            <button type="button" class="btn btn-light fs-5  px-5" href="">Cadastrar</button>
+                            <button type="submit" class="btn btn-light fs-5  px-5" href="">Cadastrar</button>
                         </div>
                         <div class="text-footer">
                             <h2>Já tem uma conta?</h2>
@@ -229,7 +229,7 @@ $conexaoBanco->fecharConexao();
             var site = document.getElementById("site").value;
             var email = document.getElementById("email").value;
             var senha = document.getElementById("senha").value;
-            var estado = document.getElementById("estado").value
+            var estado =document.getElementById("estado").value
 
             // Validar campos obrigatórios
             if (nome === "" || endereco === "" || bairro === "" || numero === "" || cidade === "" || site === "" || email === "" || telefone === "" || cnpj === "" || cep === "" || senha === "" || estado === "") {

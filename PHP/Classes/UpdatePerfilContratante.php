@@ -50,15 +50,15 @@ class UpdatePerfilContratante
             $telefone = $_POST["telefone"];
             $CNPJ = $_POST["CNPJ"];
             $cep = $_POST["cep"];
-            // $ENDERECO = $_POST["ENDERECO"];
+            $ENDERECO = $_POST["ENDERECO"];
             $bairro = $_POST["bairro"];
             $cidade = $_POST["cidade"];
             // $estado = $_POST["estado"];
-            // $site = $_POST["site"];
+            $site = $_POST["site"];
 
             $idUsuario = $this->obterIdUsuario();
 
-            $sql = "UPDATE contratante SET nome = '$nome',telefone = '$telefone',CNPJ = '$CNPJ',cep ='$cep', bairro = '$bairro', cidade = '$cidade' WHERE id = '$idUsuario'";
+            $sql = "UPDATE contratante SET nome = '$nome',telefone = '$telefone',CNPJ = '$CNPJ',cep ='$cep', bairro = '$bairro', cidade = '$cidade', site = '$site', endereco = '$ENDERECO' WHERE id = '$idUsuario'";
             if ($this->conexao->executarConsulta($sql)) {
                 echo "Dados de perfil atualizados com sucesso!";
             } else {

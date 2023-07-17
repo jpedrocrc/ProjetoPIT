@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
   <header>
-    <img src="logo.png" alt="Logo" onclick="window.location.href='paginaprincipal.html'">
+    <img src="logo.png" alt="Logo" onclick="window.location.href='paginaprincipal.php'">
   </header>
   <div class="search-bar">
     <form method="POST">

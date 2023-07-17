@@ -44,7 +44,7 @@ $dadosTalento = $UpdatePerfilTalento->obterDados();
 
 <body class="bg-image" style="background-image: url('..\PHP\joanna-kosinska-7ACuHoezUYk-unsplash.jpg')">
 <header>
-        <img src="logo.png" alt="Logo" onclick="window.location.href='paginaprincipal.html'">
+        <img src="logo.png" alt="Logo" onclick="window.location.href='paginaprincipal.php'">
     </header>
     <div class="card bg-dark text-white position-absolute top-50 start-50 translate-middle p-2">
     <h3 class="mb-4 p-2">Alterar os Dados do Perfil</h3>

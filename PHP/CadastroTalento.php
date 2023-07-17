@@ -1,4 +1,5 @@
 <?php
+ini_set('default_charset', 'UTF-8');
 require_once './Classes/ConexaoBD.php';
 require_once './Classes/CadastrarTalento.php';
 include_once './Classes/config.php';
@@ -10,7 +11,6 @@ $cadastroTalento = new CadastroTalento($conexaoBanco);
 $cadastroTalento->cadastrar();
 
 $conexaoBanco->fecharConexao();
-
 ?>
 
 
@@ -18,10 +18,10 @@ $conexaoBanco->fecharConexao();
 <html lang="en">
 
 <head>
+    <title>Criar Conta</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <link rel="stylesheet" type="text/css" href="../CSS/EmpresaeTalento.css">
     <link rel="preconnect" href="https://fonts.googleapis.com%22%3E/">
     <link rel=" preconnect" href="https://fonts.gstatic.com/" crossorigin>
@@ -50,13 +50,43 @@ $conexaoBanco->fecharConexao();
             border: solid 0.1px white;
             padding: 10px;
         }
+
+        #erro-senha {
+            color: red;
+        }
+
+        .valido {
+            color: green;
+        }
+        .label-area {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .form-label {
+            margin-bottom: 1px;
+        }
+
+        .main-input {
+            padding-right: 30px; /* Adicionamos padding à direita para acomodar o ícone */
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 10px;
+            top: 72%; /* Posicionamos o ícone um pouco mais abaixo */
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
     </style>
 </head>
 
 
-<body class="bg-image" style="background-image: url('../PHP/joanna-kosinska-7ACuHoezUYk-unsplash.jpg')">
+<body class="bg-image" style="background-image: url('../PHP/mainimg.png'); height: 100vh" onload="mostrarRequisitos()">
     <header>
-        <img src="logo.png" alt="Logo" onclick="window.location.href='paginaprincipal.html'">
+        <img src="logo.png" alt="Logo" onclick="window.location.href='paginaprincipal.php'">
     </header>
     <div class="body-content ">
         <div class="card-container">
@@ -106,7 +136,8 @@ $conexaoBanco->fecharConexao();
                                 <div class="col">
                                     <div class="label-area px-3">
                                         <label for="cep-number" class="form-label">CEP</label>
-                                        <input type="text" class="main-input w-100" style="max-width: 160px" id="cep-number"oninput="mascara_cep()" name="cep">
+                                        <input type="text" class="main-input w-100" style="max-width: 160px"
+                                            id="cep-number" oninput="mascara_cep()" name="cep">
                                     </div>
                                 </div>
                             </div>
@@ -120,34 +151,13 @@ $conexaoBanco->fecharConexao();
                             <input type="tel" class="main-input" id="tel-number" oninput="mascara_telefone()"
                                 name="telefone">
                         </div>
-                        <div class="country-area">
-                            <label for="paises" class="form-label">Selecione um país:</label>
-                            <select id="paises" name="pais" class="main-input" style="color:black">
-                                <option value="NULL">Selecione ...</option>
-                                <option value="DE">Alemanha</option>
-                                <option value="AR">Argentina</option>
-                                <option value="BE">Bélgica</option>
-                                <option value="BR">Brasil</option>
-                                <option value="CA">Canadá</option>
-                                <option value="CL">Chile</option>
-                                <option value="CN">China</option>
-                                <option value="CO">Colômbia</option>
-                                <option value="KR">Coreia do Sul</option>
-                                <option value="EC">Equador</option>
-                                <option value="ES">Estados Unidos</option>
-                                <option value="FR">França</option>
-                                <option value="GB">Inglaterra</option>
-                                <option value="JP">Japão</option>
-                                <option value="MX">México</option>
-                                <option value="PE">Peru</option>
-                                <option value="VE">Venezuela</option>
-                                <option value="">Outro país</option>
-                            </select>
-                        </div>
                         <div class="label-area">
                             <label for="passw" class="form-label">Senha</label>
-                            <input type="password" class="main-input" id="passw" name="senha">
+                            <input type="password" class="main-input" id="passw" name="senha"
+                                oninput="mostrarRequisitos()">
+                            <span class="password-toggle" onclick="alternarVisualizacao()">👁️</span>
                         </div>
+                        <div id="requisitos-senha"></div>
                     </div>
                     <div class="form-footer">
                         <div class="info1-area">
@@ -167,7 +177,7 @@ $conexaoBanco->fecharConexao();
                     </div>
                     <div class="form-footer2">
                         <div class="p-3 text-lg-center">
-                            <button type="button" class="btn btn-light fs-5  px-5" href="">Cadastrar</button>
+                            <button type="submit" class="btn btn-light fs-5  px-5" href="">Cadastrar</button>
                         </div>
                         <div class="text-footer">
                             <h2>Já tem uma conta?</h2>
@@ -178,6 +188,7 @@ $conexaoBanco->fecharConexao();
                     </div>
             </form>
         </div>
+    </div>
     </div>
     <script>
         function validarFormulario() {
@@ -223,6 +234,18 @@ $conexaoBanco->fecharConexao();
                 alert("Por favor, insira um email válido.");
                 return false;
             }
+            // Validar senha
+            mostrarRequisitos();
+            var senha = document.getElementById('passw').value;
+            var pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+            if (!pattern.test(senha)) {
+                document.getElementById('erro-senha').textContent = "A senha não atende aos requisitos.";
+                return false;
+            }
+
+            document.getElementById('erro-senha').textContent = "";
+            return true;
 
             return true;
         }
@@ -288,6 +311,37 @@ $conexaoBanco->fecharConexao();
         function mascara_cep() {
             var cep = document.getElementById("cep-number");
             formatarCEP(cep);
+        }
+
+        function mostrarRequisitos() {
+            var senha = document.getElementById('passw').value;
+            var pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+            var mensagem = "A senha deve conter:<br>";
+            if (!senha.match(/[a-z]/g)) mensagem += "- Pelo menos uma letra minúscula;<br>";
+            else mensagem += "- <span class='valido'>Pelo menos uma letra minúscula;</span><br>";
+
+            if (!senha.match(/[A-Z]/g)) mensagem += "- Pelo menos uma letra maiúscula;<br>";
+            else mensagem += "- <span class='valido'>Pelo menos uma letra maiúscula;</span><br>";
+
+            if (!senha.match(/\d/g)) mensagem += "- Pelo menos um número;<br>";
+            else mensagem += "- <span class='valido'>Pelo menos um número;</span><br>";
+
+            if (!senha.match(/[@$!%*?&]/g)) mensagem += "- Pelo menos um caracter especial (@, $, !, %, *, ?, &);<br>";
+            else mensagem += "- <span class='valido'>Pelo menos um caracter especial (@, $, !, %, *, ?, &);</span><br>";
+
+            if (senha.length >= 8) mensagem += "- <span class='valido'>No mínimo 8 caracteres;</span><br>";
+            else mensagem += "- No mínimo 8 caracteres;<br>";
+
+            document.getElementById('requisitos-senha').innerHTML = mensagem;
+        }
+        function alternarVisualizacao() {
+            const senhaInput = document.getElementById("passw");
+            if (senhaInput.type === "password") {
+                senhaInput.type = "text";
+            } else {
+                senhaInput.type = "password";
+            }
         }
     </script>
 </body>
