@@ -49,6 +49,7 @@ $conexaoBanco->fecharConexao();
             background-color: transparent;
             border: solid 0.1px white;
             padding: 10px;
+            padding-right: 30px;
         }
 
         #erro-senha {
@@ -69,14 +70,10 @@ $conexaoBanco->fecharConexao();
             margin-bottom: 1px;
         }
 
-        .main-input {
-            padding-right: 30px; /* Adicionamos padding à direita para acomodar o ícone */
-        }
-
         .password-toggle {
             position: absolute;
             right: 10px;
-            top: 72%; /* Posicionamos o ícone um pouco mais abaixo */
+            top: 72%; 
             transform: translateY(-50%);
             cursor: pointer;
         }

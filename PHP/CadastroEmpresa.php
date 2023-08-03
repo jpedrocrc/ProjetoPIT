@@ -50,10 +50,35 @@ $conexaoBanco->fecharConexao();
             border: solid 0.1px white;
             padding: 10px;
         }
+        #erro-senha {
+            color: red;
+        }
+
+        .valido {
+            color: green;
+        }
+        .label-area {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .form-label {
+            margin-bottom: 1px;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 10px;
+            top: 72%; 
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
     </style>
 </head>
 
-<body class="bg-image" style="background-image: url('../PHP/mainimg.png'); height: 100vh">
+<body class="bg-image" style="background-image: url('../PHP/mainimg.png'); height: 100vh" onload="mostrarRequisitos()">
     <header>
         <img src="logo.png" alt="Logo" onclick="window.location.href='paginaprincipal.php'">
     </header>
@@ -181,8 +206,11 @@ $conexaoBanco->fecharConexao();
                         </div>
                         <div class="label-area">
                             <label for="passw" class="form-label">Senha</label>
-                            <input type="password" class="main-input" id="passw" name="senha">
+                            <input type="password" class="main-input" id="passw" name="senha"
+                                oninput="mostrarRequisitos()">
+                            <span class="password-toggle" onclick="alternarVisualizacao()">👁️</span>
                         </div>
+                        <div id="requisitos-senha"></div>
                     </div>
                     <div class="form-footer">
                         <!-- <div class="info1-area">
@@ -264,6 +292,18 @@ $conexaoBanco->fecharConexao();
                 alert("Por favor, insira um email válido.");
                 return false;
             }
+            // Validar senha
+            mostrarRequisitos();
+            var senha = document.getElementById('passw').value;
+            var pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+            if (!pattern.test(senha)) {
+                document.getElementById('erro-senha').textContent = "A senha não atende aos requisitos.";
+                return false;
+            }
+
+            document.getElementById('erro-senha').textContent = "";
+            return true;
 
             return true;
         }
@@ -309,6 +349,36 @@ $conexaoBanco->fecharConexao();
         function mascara_cep() {
             var cep = document.getElementById("cep");
             formatarCEP(cep);
+        }
+        function mostrarRequisitos() {
+            var senha = document.getElementById('passw').value;
+            var pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+            var mensagem = "A senha deve conter:<br>";
+            if (!senha.match(/[a-z]/g)) mensagem += "- Pelo menos uma letra minúscula;<br>";
+            else mensagem += "- <span class='valido'>Pelo menos uma letra minúscula;</span><br>";
+
+            if (!senha.match(/[A-Z]/g)) mensagem += "- Pelo menos uma letra maiúscula;<br>";
+            else mensagem += "- <span class='valido'>Pelo menos uma letra maiúscula;</span><br>";
+
+            if (!senha.match(/\d/g)) mensagem += "- Pelo menos um número;<br>";
+            else mensagem += "- <span class='valido'>Pelo menos um número;</span><br>";
+
+            if (!senha.match(/[@$!%*?&]/g)) mensagem += "- Pelo menos um caracter especial (@, $, !, %, *, ?, &);<br>";
+            else mensagem += "- <span class='valido'>Pelo menos um caracter especial (@, $, !, %, *, ?, &);</span><br>";
+
+            if (senha.length >= 8) mensagem += "- <span class='valido'>No mínimo 8 caracteres;</span><br>";
+            else mensagem += "- No mínimo 8 caracteres;<br>";
+
+            document.getElementById('requisitos-senha').innerHTML = mensagem;
+        }
+        function alternarVisualizacao() {
+            const senhaInput = document.getElementById("passw");
+            if (senhaInput.type === "password") {
+                senhaInput.type = "text";
+            } else {
+                senhaInput.type = "password";
+            }
         }
 
     </script>
