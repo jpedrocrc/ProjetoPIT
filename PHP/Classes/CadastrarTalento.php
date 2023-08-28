@@ -33,7 +33,7 @@ class CadastroTalento
             $id = $this->gerarIdAleatorio();
             $genero = $_POST["genero"];
             //Validar email
-            $verificarEmail = "SELECT * FROM taletno WHERE email = '$email'";
+            $verificarEmail = "SELECT * FROM talento WHERE email = '$email'";
             $resultado = $this->conexao->executarConsulta($verificarEmail);
 
             if ($resultado && $resultado->num_rows > 0) {
