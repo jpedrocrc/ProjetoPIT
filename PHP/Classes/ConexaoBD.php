@@ -32,19 +32,19 @@ class ConexaoBD
         $this->conexao->close();
     }
 
-    // Executar a consulta
-    // Executar a consulta
     public function executarConsulta($sql)
     {
         $resultado = $this->conexao->query($sql);
 
         if ($resultado === false) {
             echo "Erro na consulta: " . $this->obterErro();
-            return null;
+            return null; 
         }
 
         return $resultado;
     }
+
+
 
 
     // Verificar erro
