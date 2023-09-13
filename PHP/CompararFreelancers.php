@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+     integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <title>Comparação de Freelancers</title>
     <style>
         .container {
@@ -39,7 +41,8 @@
     </style>
 </head>
 
-<body>
+<body class="bg-image" style="background-image: url('../PHP/mainimg.png');">
+<form class=" bg-dark text-white position-absolute top-50 start-50 translate-middle">
 <?php
 ini_set('default_charset', 'UTF-8');
 include_once './Classes/config.php';
@@ -60,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['freelancer1']) && iss
     $freelancer2Dados = $listaFreelancers->GetFreelancerPorId($freelancer2Id);
 
     if ($freelancer1Dados !== null && $freelancer2Dados !== null) {
-        echo "<h1>Comparação de Freelancers</h1>";
+        echo "<h3 class='m-2'>Comparação de Freelancers</h3>";
         echo "<div class='container'>";
         
         echo "<div class='table-container'>";
@@ -86,8 +89,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['freelancer1']) && iss
         echo "Erro ao obter dados dos freelancers selecionados.";
     }
 } else {
-    echo "<h1>Selecione dois freelancers para comparar:</h1>";
+    echo "<h3 class='m-2'>Selecione dois freelancers para comparar:</h3>";
     echo "<form action='' method='post'>";
+    echo "<div class='text-center'>";
     echo "<label for='freelancer1'>Freelancer 1:</label>";
     echo "<select name='freelancer1' id='freelancer1'>";
     foreach ($freelancers as $freelancer) {
@@ -97,16 +101,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['freelancer1']) && iss
 
     echo "<label for='freelancer2'>Freelancer 2:</label>";
     echo "<select name='freelancer2' id='freelancer2'>";
+    echo "</div>";
     foreach ($freelancers as $freelancer) {
         echo "<option value='{$freelancer['ID_FREELANCER']}'>{$freelancer['NOME']}</option>";
     }
     echo "</select>";
 
-    echo "<button type='submit'>Comparar</button>";
+    echo "<div class='mt-2 text-center'><button class='btn btn-light' type='submit'>Comparar</button></div>";
     echo "</form>";
 }
 ?>
-
+    </div>
 </body>
 
 </html>

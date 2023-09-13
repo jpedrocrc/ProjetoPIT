@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+     integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <title>Comparação de Serviços</title>
     <style>
         .container {
@@ -21,7 +23,8 @@
     </style>
 </head>
 
-<body>
+<body class="bg-image" style="background-image: url('../PHP/mainimg.png');">
+<form class=" bg-dark text-white position-absolute top-50 start-50 translate-middle">
 <?php
 ini_set('default_charset', 'UTF-8');
 include_once './Classes/config.php';
@@ -42,8 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['servico1']) && isset(
     $servico2Dados = $listaServicos->GetServicoPorId($servico2Id);
 
     if ($servico1Dados !== null && $servico2Dados !== null) {
-        echo "<h1>Comparação de Serviços</h1>";
-        echo "<div class='container'>";
+        echo "<h3 class='m-2'>Comparação de Serviços</h3>";
         
         echo "<div class='table-container'>";
         echo "<table>";
@@ -68,8 +70,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['servico1']) && isset(
         echo "Erro ao obter dados dos serviços selecionados.";
     }
 } else {
-    echo "<h1>Selecione dois serviços para comparar:</h1>";
+    echo "<h3 class='m-2'>Selecione dois serviços para comparar:</h3>";
     echo "<form action='' method='post'>";
+    echo "<div class='text-center'>";
     echo "<label for='servico1'>Serviço 1:</label>";
     echo "<select name='servico1' id='servico1'>";
     foreach ($servicos as $servico) {
@@ -79,16 +82,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['servico1']) && isset(
 
     echo "<label for='servico2'>Serviço 2:</label>";
     echo "<select name='servico2' id='servico2'>";
+    echo "</div>";
     foreach ($servicos as $servico) {
         echo "<option value='{$servico['ID_SERVICO']}'>{$servico['SERVICO_DESCRICAO']}</option>";
     }
     echo "</select>";
 
-    echo "<button type='submit'>Comparar</button>";
+    echo "<div class='mt-2 text-center'><button class='btn btn-light' type='submit'>Comparar</button></div>";
     echo "</form>";
 }
 ?>
-
+</form>
 </body>
 
 </html>
