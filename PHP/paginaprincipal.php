@@ -4,6 +4,7 @@ session_start();
 
 $nomeUsuario = isset($_SESSION['Nome']) ? $_SESSION['Nome'] : '';
 $nome = isset($nomeUsuario['Nome']) ? $nomeUsuario['Nome'] : '';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,22 +57,28 @@ $nome = isset($nomeUsuario['Nome']) ? $nomeUsuario['Nome'] : '';
               Nossa Empresa
             </button>
             <ul class="dropdown-menu dropdown-menu-dark">
-              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="FAQ.html">FAQ</a></li>
               <li><a class="dropdown-item" href="#">Another action</a></li>
               <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
           </li>
         </ul>
-        <label class="navbar-text text-light">Bem-vindo,
-          <?php echo $nomeUsuario; ?> 
-        </label>
+        <?php if (!empty($nomeUsuario)) : ?>
+  <label class="navbar-text text-light">Bem-vindo, <?php echo $nomeUsuario; ?></label>
+<?php endif; ?>
+
       </div>
       <div class="d-flex">
-        <button class="btn btn-outline-light me-2" type="button"
-          onclick="window.location.href='PaginaLogin.php'">Login</button>
+        <?php if (!empty($nomeUsuario)): ?>
+          <form method="post" action="logout.php">
+            <button class="btn btn-outline-light me-2" type="submit">Logout</button>
+          </form>
+        <?php else: ?>
+          <button class="btn btn-outline-light me-2" type="button"
+            onclick="window.location.href='PaginaLogin.php'">Login</button>
+        <?php endif; ?>
         <button class="btn btn-light" type="button"
           onclick="window.location.href='CadastroTalento.php'">Registrar-se</button>
-
       </div>
     </div>
   </nav>
