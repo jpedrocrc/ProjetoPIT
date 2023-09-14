@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="password" class="form-control" id="senha" placeholder="Digite sua senha"name="senha">
           </div>
           <div class="mb-3">
-            <a href="#" class="text-decoration-none text-white">Esqueceu a senha?</a>
+            <a href="PaginaRecuperacaoSenha.html" class="text-decoration-none text-white">Esqueceu a senha?</a>
           </div>
           <button type="submit" class="btn form-control btn-light">Entrar</button>
         </form>
