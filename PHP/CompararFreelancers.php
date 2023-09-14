@@ -12,11 +12,12 @@
             display: flex;
             justify-content: space-between;
             margin: 20px;
+            color: white;
         }
 
         .freelancer {
-            border: 1px solid #ccc;
-            padding: 10px;
+            background-color: #212529;
+            color: white;
             margin: 10px;
             max-width: 45%;
         }
@@ -26,6 +27,7 @@
             padding: 10px;
             margin: 10px;
             max-width: 45%;
+            background-color: #212529;
         }
 
         table {
@@ -42,7 +44,7 @@
 </head>
 
 <body class="bg-image" style="background-image: url('../PHP/mainimg.png');">
-<div class="bg-dark text-white position-absolute top-50 start-50 translate-middle">
+<!-- <div class="bg-dark text-white p-0"> -->
     <?php
     ini_set('default_charset', 'UTF-8');
     include_once './Classes/config.php';
@@ -63,10 +65,10 @@
         $freelancer2Dados = $listaFreelancers->GetFreelancerPorId($freelancer2Id);
 
         if ($freelancer1Dados !== null && $freelancer2Dados !== null) {
-            echo "<h3 class='m-2'>Comparação de Freelancers</h3>";
+            echo "<h3 class='m-2 p-0 text-center'>Comparação de Freelancers</h3>";
             echo "<div class='container'>";
 
-            echo "<div class='table-container'>";
+            echo "<div class=' table-container'>";
             echo "<table>";
             echo "<tr><th>Freelancer 1</th></tr>";
             echo "<tr><td>";
@@ -89,17 +91,17 @@
             echo "Erro ao obter dados dos freelancers selecionados.";
         }
     } else {
-        echo "<h3 class='m-2'>Selecione dois freelancers para comparar:</h3>";
-        echo "<form action='' method='post'>";
+        echo "<h3 class='m-2 mt-5 text-center'>Selecione dois freelancers para comparar:</h3>";
+        echo "<form class='position-absolute top-50 start-50 translate-middle bg-dark p-1' action='' method='post'>";
         echo "<div class='text-center'>";
-        echo "<label for='freelancer1'>Freelancer 1:</label>";
+        echo "<label class='text-white' for='freelancer1'>Freelancer 1:</label>";
         echo "<select name='freelancer1' id='freelancer1'>";
         foreach ($freelancers as $freelancer) {
             echo "<option value='{$freelancer['ID_FREELANCER']}'>{$freelancer['NOME']}</option>";
         }
         echo "</select>";
 
-        echo "<label for='freelancer2'>Freelancer 2:</label>";
+        echo "<label class='text-white mx-2' for='freelancer2'>Freelancer 2:</label>";
         echo "<select name='freelancer2' id='freelancer2'>";
         foreach ($freelancers as $freelancer) {
             echo "<option value='{$freelancer['ID_FREELANCER']}'>{$freelancer['NOME']}</option>";
@@ -111,7 +113,7 @@
         echo "</form>";
     }
     ?>
-</div>
+<!-- </div> -->
 </body>
 
 </html>
