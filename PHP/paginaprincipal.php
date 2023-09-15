@@ -58,7 +58,7 @@ $nome = isset($nomeUsuario['Nome']) ? $nomeUsuario['Nome'] : '';
             </button>
             <ul class="dropdown-menu dropdown-menu-dark">
               <li><a class="dropdown-item" href="FAQ.html">FAQ</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="RelatorioDeBug.html">Relate seus Bugs</a></li>
               <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
           </li>
