@@ -70,6 +70,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <a href="PaginaRecuperacaoSenha.html" class="text-decoration-none text-white">Esqueceu a senha?</a>
           </div>
           <button type="submit" class="btn form-control btn-light">Entrar</button>
+          <div class="mt-1 mb-1 text-center">ou</div>
+          <a type="submit" class="btn form-control btn-light" href="CadastroTalento.php">Cadastre-se</a>
         </form>
       </div>
     </div>

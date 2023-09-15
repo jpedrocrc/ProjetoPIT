@@ -52,18 +52,24 @@ if (isset($_GET['token'])) {
 <html>
 <head>
     <title>Redefinir Senha</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
-<body>
-    <h1>Redefinir Senha</h1>
-    <p>Informe a nova senha para redefinir sua senha.</p>
+<body class="bg-image" style="background-image: url('../PHP/mainimg.png'); height: 100vh">
+    <div class="card text-white bg-dark position-absolute top-50 start-50 translate-middle" style="max-width: 400px">
+        <div class="card-body">
+            <h1>Redefinir Senha</h1>
+            <p>Informe a nova senha para redefinir sua senha.</p>
 
-    <?php echo $mensagem; ?>
+            <?php echo $mensagem; ?>
 
-    <form action="" method="post">
-        <label for="nova_senha">Nova Senha:</label>
-        <input type="password" id="nova_senha" name="nova_senha" required>
-        <br>
-        <button type="submit">Redefinir Senha</button>
-    </form>
+            <form action="" method="post">
+            <label for="nova_senha" class="form-label">Senha</label> 
+                <input type="password" id="nova_senha" name="nova_senha" required>
+                <div class="mb-3"></div>
+                <button type="submit" class="btn form-control btn-light">Redefinir Senha</button>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
