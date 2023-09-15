@@ -5,7 +5,6 @@ require_once './Classes/UpdatePerfilTalento.php';
 
 $conexaoBanco = new ConexaoBD($nomeServidor, $nomeUsuario, $senha, $nomeBanco);
 $conexaoBanco->conectar();
-// Iniciar a sessão
 session_start();
 $UpdatePerfilTalento = new UpdatePerfilTalento($conexaoBanco);
 $UpdatePerfilTalento->verificarUsuarioLogado();
@@ -29,11 +28,13 @@ $nome = isset($nomeUsuario['Nome']) ? $nomeUsuario['Nome'] : '';
     <link rel="preconnect" href="https://fonts.googleapis.com%22%3E/
 <link rel=" preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <style>
   </style>
 </head>
 
-<body>
+<body class="bg-image" style="background-image: url('../PHP/mainimg.png');">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <img id="logoo" src="logo.png" onclick="window.location.href='paginaprincipal.php'" class="navbar-brand img-fluid scale-down" alt="Logo" style="width: 150px">
