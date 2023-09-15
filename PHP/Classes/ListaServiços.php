@@ -9,22 +9,21 @@ class ListaServicos
     }
 
     public function GetServicos()
-{
-    $sql = "SELECT SERVICO.ID_SERVICO, CONTRATANTE.NOME, CONTRATANTE.TELEFONE, CONTRATANTE.EMAIL, SERVICO.DESCRICAO, SERVICO.SERVICO, CONTRATANTE.ENDERECO, CONTRATANTE.CIDADE, CONTRATANTE.BAIRRO
-    FROM SERVICO
-    INNER JOIN CONTRATANTE ON SERVICO.ID_FK = CONTRATANTE.ID";
+    {
+        $sql = "SELECT CONTRATANTE.NOME, CONTRATANTE.TELEFONE, CONTRATANTE.EMAIL, SERVICO.DESCRICAO, SERVICO.SERVICO, CONTRATANTE.ENDERECO, CONTRATANTE.CIDADE, CONTRATANTE.BAIRRO
+        FROM SERVICO
+        INNER JOIN CONTRATANTE ON SERVICO.ID_FK = CONTRATANTE.ID";
 
-    $resultado = $this->conexao->executarConsulta($sql);
-    $servicos = array();
+        $resultado = $this->conexao->executarConsulta($sql);
 
-    if ($this->conexao->obterNumLinhas($resultado) > 0) {
-        while ($row = $this->conexao->obterProximaLinha($resultado)) {
-            $servicos[] = $row;
+        if ($this->conexao->obterNumLinhas($resultado) > 0) {
+            while ($row = $this->conexao->obterProximaLinha($resultado)) {
+                $this->MostrarServicos($row);
+            }
+        } else {
+            echo 'Nenhum serviço encontrado.';
         }
     }
-
-    return $servicos;
-}
 
     private function MostrarServicos($row)
     {

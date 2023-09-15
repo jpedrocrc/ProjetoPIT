@@ -14,8 +14,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html>
 
 <head>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-     integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
   <title>Serviços Disponiveis</title>
   <style>
     /* Estilos gerais */
@@ -88,8 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <div class="search-bar">
     <form method="POST">
       <input type="text" placeholder="Buscar serviço" name="termo_busca" value="<?php echo isset($termoBusca) ? $termoBusca : ''; ?>">
-      <input class="btn text-white" style="background-color: #646B71" type="button" value="Buscar">
-      <a class="btn text-white" style="background-color: #646B71" href="..\PHP\CompararServiços.php" role="button">Comparar Serviços</a>
+      <input type="submit" value="Buscar">
     </form>
   </div>
 

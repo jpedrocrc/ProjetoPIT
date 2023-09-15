@@ -44,7 +44,6 @@
 </head>
 
 <body class="bg-image" style="background-image: url('../PHP/mainimg.png');">
-<!-- <div class="bg-dark text-white p-0"> -->
     <?php
     ini_set('default_charset', 'UTF-8');
     include_once './Classes/config.php';
@@ -61,34 +60,38 @@
         $freelancer1Id = $_POST['freelancer1'];
         $freelancer2Id = $_POST['freelancer2'];
 
-        $freelancer1Dados = $listaFreelancers->GetFreelancerPorId($freelancer1Id);
-        $freelancer2Dados = $listaFreelancers->GetFreelancerPorId($freelancer2Id);
-
-        if ($freelancer1Dados !== null && $freelancer2Dados !== null) {
-            echo "<h3 class='m-2 p-0 text-center'>Comparação de Freelancers</h3>";
-            echo "<div class='container'>";
-
-            echo "<div class=' table-container'>";
-            echo "<table>";
-            echo "<tr><th>Freelancer 1</th></tr>";
-            echo "<tr><td>";
-            $listaFreelancers->MostrarFreelancersSelecionados($freelancer1Dados);
-            echo "</td></tr>";
-            echo "</table>";
-            echo "</div>";
-
-            echo "<div class='table-container'>";
-            echo "<table>";
-            echo "<tr><th>Freelancer 2</th></tr>";
-            echo "<tr><td>";
-            $listaFreelancers->MostrarFreelancersSelecionados($freelancer2Dados);
-            echo "</td></tr>";
-            echo "</table>";
-            echo "</div>";
-
-            echo "</div>";
+        if ($freelancer1Id === $freelancer2Id) {
+            echo "<h3 class='m-2 p-0 text-center'>Erro: Você não pode selecionar o mesmo freelancer duas vezes.</h3>";
         } else {
-            echo "Erro ao obter dados dos freelancers selecionados.";
+            $freelancer1Dados = $listaFreelancers->GetFreelancerPorId($freelancer1Id);
+            $freelancer2Dados = $listaFreelancers->GetFreelancerPorId($freelancer2Id);
+
+            if ($freelancer1Dados !== null && $freelancer2Dados !== null) {
+                echo "<h3 class='m-2 p-0 text-center'>Comparação de Freelancers</h3>";
+                echo "<div class='container'>";
+
+                echo "<div class=' table-container'>";
+                echo "<table>";
+                echo "<tr><th>Freelancer 1</th></tr>";
+                echo "<tr><td>";
+                $listaFreelancers->MostrarFreelancersSelecionados($freelancer1Dados);
+                echo "</td></tr>";
+                echo "</table>";
+                echo "</div>";
+
+                echo "<div class='table-container'>";
+                echo "<table>";
+                echo "<tr><th>Freelancer 2</th></tr>";
+                echo "<tr><td>";
+                $listaFreelancers->MostrarFreelancersSelecionados($freelancer2Dados);
+                echo "</td></tr>";
+                echo "</table>";
+                echo "</div>";
+
+                echo "</div>";
+            } else {
+                echo "Erro ao obter dados dos freelancers selecionados.";
+            }
         }
     } else {
         echo "<h3 class='m-2 mt-5 text-center'>Selecione dois freelancers para comparar:</h3>";
@@ -108,12 +111,23 @@
         }
         echo "</select>";
 
-        echo "<div class='mt-2 text-center'><button class='btn btn-light' type='submit'>Comparar</button></div>";
+        echo "<div class='mt-2 text-center'><button class='btn btn-light' type='submit' onclick='return validarSelecao()'>Comparar</button></div>";
         echo "</div>";
         echo "</form>";
     }
     ?>
-<!-- </div> -->
+    <script>
+        function validarSelecao() {
+            var freelancer1 = document.getElementById('freelancer1').value;
+            var freelancer2 = document.getElementById('freelancer2').value;
+
+            if (freelancer1 === freelancer2) {
+                alert('Você não pode selecionar o mesmo freelancer duas vezes.');
+                return false;
+            }
+            return true;
+        }
+    </script>
 </body>
 
 </html>

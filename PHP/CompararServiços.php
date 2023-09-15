@@ -41,39 +41,43 @@
         $servico1Id = $_POST['servico1'];
         $servico2Id = $_POST['servico2'];
 
-        $servico1Dados = $listaServicos->GetServicoPorId($servico1Id);
-        $servico2Dados = $listaServicos->GetServicoPorId($servico2Id);
-
-        if ($servico1Dados !== null && $servico2Dados !== null) {
-            echo "<h3 class='m-2'>Comparação de Serviços</h3>";
-
-            echo "<div class='row'>";
-            
-            echo "<div class='col-md-6'>";
-            echo "<div class='table-container'>";
-            echo "<table>";
-            echo "<tr><th>Serviço 1</th></tr>";
-            echo "<tr><td>";
-            $listaServicos->MostrarServicosSelecionados($servico1Dados);
-            echo "</td></tr>";
-            echo "</table>";
-            echo "</div>";
-            echo "</div>";
-
-            echo "<div class='col-md-6'>";
-            echo "<div class='table-container'>";
-            echo "<table>";
-            echo "<tr><th>Serviço 2</th></tr>";
-            echo "<tr><td>";
-            $listaServicos->MostrarServicosSelecionados($servico2Dados);
-            echo "</td></tr>";
-            echo "</table>";
-            echo "</div>";
-            echo "</div>";
-            
-            echo "</div>";
+        if ($servico1Id === $servico2Id) {
+            echo "<h3 class='m-2 p-0 text-center'>Erro: Você não pode selecionar o mesmo freelancer duas vezes.</h3>";
         } else {
-            echo "Erro ao obter dados dos serviços selecionados.";
+            $servico1Dados = $listaServicos->GetServicoPorId($servico1Id);
+            $servico2Dados = $listaServicos->GetServicoPorId($servico2Id);
+
+            if ($servico1Dados !== null && $servico2Dados !== null) {
+                echo "<h3 class='m-2'>Comparação de Serviços</h3>";
+
+                echo "<div class='row'>";
+                
+                echo "<div class='col-md-6'>";
+                echo "<div class='table-container'>";
+                echo "<table>";
+                echo "<tr><th>Serviço 1</th></tr>";
+                echo "<tr><td>";
+                $listaServicos->MostrarServicosSelecionados($servico1Dados);
+                echo "</td></tr>";
+                echo "</table>";
+                echo "</div>";
+                echo "</div>";
+
+                echo "<div class='col-md-6'>";
+                echo "<div class='table-container'>";
+                echo "<table>";
+                echo "<tr><th>Serviço 2</th></tr>";
+                echo "<tr><td>";
+                $listaServicos->MostrarServicosSelecionados($servico2Dados);
+                echo "</td></tr>";
+                echo "</table>";
+                echo "</div>";
+                echo "</div>";
+                
+                echo "</div>";
+            } else {
+                echo "Erro ao obter dados dos serviços selecionados.";
+            }
         }
     } else {
         echo "<h3 class='m-2'>Selecione dois serviços para comparar:</h3>";
@@ -93,12 +97,24 @@
         }
         echo "</select>";
 
-        echo "<div class='mt-2 text-center'><button class='btn btn-light' type='submit'>Comparar</button></div>";
+        echo "<div class='mt-2 text-center'><button class='btn btn-light' type='submit'onclick='return validarSelecao()'>Comparar</button></div>";
         echo "</div>";
         echo "</form>";
     }
     ?>
 </div>
+<script>
+        function validarSelecao() {
+            var freelancer1 = document.getElementById('freelancer1').value;
+            var freelancer2 = document.getElementById('freelancer2').value;
+
+            if (freelancer1 === freelancer2) {
+                alert('Você não pode selecionar o mesmo freelancer duas vezes.');
+                return false;
+            }
+            return true;
+        }
+    </script>
 </body>
 
 </html>
