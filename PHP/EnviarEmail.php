@@ -54,6 +54,7 @@ try {
     $mail->Username = 'hiregeniuses@gmail.com';
     $mail->Password = 'ccxh iuhw awiv rsqk';
     $mail->Port = 587;
+    $mail->CharSet = 'UTF-8';
 
     $mail->setFrom('hiregeniuses@gmail.com');
     $mail->addAddress($emailProcurado);
