@@ -40,6 +40,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <style>
+      .password-toggle {
+            position: absolute;
+            right: 20px;
+            top: 64%; 
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body class="bg-image" style="background-image: url('../PHP/mainimg.png'); height: 100vh">
 <div class="container">
@@ -53,8 +62,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="email" class="form-control" id="email" placeholder="Digite seu email"name="email">
           </div>
           <div class="mb-3">
-            <label for="senha" class="form-label">Senha</label>
-            <input type="password" class="form-control" id="senha" placeholder="Digite sua senha"name="senha">
+            <label for="senha" class="form-label">Senha</label>   
+            <input type="password" class="form-control" id="senha" placeholder="Digite sua senha" name="senha">
+    <span class="password-toggle" onclick="alternarVisualizacao()">👁️</span>
           </div>
           <div class="mb-3">
             <a href="PaginaRecuperacaoSenha.html" class="text-decoration-none text-white">Esqueceu a senha?</a>
@@ -81,6 +91,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
 
             return true;
+        }
+        function alternarVisualizacao() {
+            const senhaInput = document.getElementById("senha");
+            if (senhaInput.type === "password") {
+                senhaInput.type = "text";
+            } else {
+                senhaInput.type = "password";
+            }
         }
     </script>
 </body>
