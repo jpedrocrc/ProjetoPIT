@@ -10,8 +10,8 @@ class ListaFreelancers
 
     public function GetFreelancers()
     {
-        $sql = "SELECT TALENTO.NOME, TALENTO.TELEFONE, TALENTO.EMAIL, FREELANCERS.DESCRICAO, FREELANCERS.SERVICO
-                FROM FREELANCERS
+        $sql = "SELECT TALENTO.NOME, TALENTO.TELEFONE, TALENTO.EMAIL, FREELANCERS.DESCRICAO, FREELANCERS.SERVICO, FREELANCERS.FORMACAO,FREELANCERS.OBJETIVO,
+                FREELANCERS.CURSOS_COMPLEMENTARES,FREELANCERS.EXPERIENCIA FROM FREELANCERS
                 INNER JOIN TALENTO ON FREELANCERS.ID_FK = TALENTO.ID";
 
         $resultado = $this->conexao->executarConsulta($sql);
@@ -33,6 +33,10 @@ class ListaFreelancers
         echo '<p>Telefone: ' . $row['TELEFONE'] . '</p>';
         echo '<p>Descrição: ' . $row['DESCRICAO'] . '</p>';
         echo '<p>Serviço: ' . $row['SERVICO'] . '</p>';
+        echo '<p>Formação: ' . $row['FORMACAO'] . '</p>';
+        echo '<p>Objetivo: ' . $row['OBJETIVO'] . '</p>';
+        echo '<p>Cursos Complementares: ' . $row['CURSOS_COMPLEMENTARES'] . '</p>';
+        echo '<p>experiência: ' . $row['EXPERIENCIA'] . '</p>';
         echo '</div>';
     }
 

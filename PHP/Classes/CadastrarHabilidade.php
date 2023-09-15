@@ -10,8 +10,8 @@ class CadastrarHabilidade
     public function verificarUsuarioLogado()
     {
         if (!isset($_SESSION['idUsuario'])) {
-            header("Location: PaginaLogin.php");
-            exit;
+           header("Location: PaginaLogin.php");
+          exit;
         }
     }
     public function verificaPermissoes(){
@@ -40,8 +40,12 @@ class CadastrarHabilidade
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $descricao = $_POST['descricao'];
             $servico = $_POST['servico'];
+            $formacao = $_POST['formacao'];
+            $objetivo = $_POST['objetivo'];
+            $cursosComplementares = $_POST['cursosComplementares'];
+            $experiencia = $_POST['experiencia'];
 
-            $sql = "INSERT INTO FREELANCERS (ID_FK, DESCRICAO, SERVICO) VALUES ('$idUsuario', '$descricao', '$servico')";
+            $sql = "INSERT INTO FREELANCERS (ID_FK, DESCRICAO, SERVICO,FORMACAO,OBJETIVO,CURSOS_COMPLEMENTARES,EXPERIENCIA) VALUES ('$idUsuario', '$descricao', '$servico','$formacao','$objetivo','$cursosComplementares','$experiencia')";
 
             $resultado = $this->conexao->executarConsulta($sql);
 
