@@ -14,12 +14,12 @@ class CadastrarHabilidade
           exit;
         }
     }
-    public function verificaPermissoes(){
-        if (!isset($_SESSION['permissao']) || $_SESSION['permissao'] !== 'talento'){
-            header("Location:CadastroServiço.php");
-            exit;
-        }
-    }
+    // public function verificaPermissoes(){
+    //     if (!isset($_SESSION['permissao']) || $_SESSION['permissao'] !== 'talento'){
+    //         header("Location:CadastroServiço.php");
+    //         exit;
+    //     }
+    // }
 
     public function obterIdUsuario()
     {

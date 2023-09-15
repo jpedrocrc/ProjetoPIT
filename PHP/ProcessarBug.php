@@ -1,9 +1,8 @@
 <?php
-header("Location: paginaprincipal.php"); 
 ini_set('default_charset', 'UTF-8');
-require_once('src/PHPMailer.php');
-require_once('src/SMTP.php');
-require_once('src/Exception.php');
+require_once(__DIR__ . '/../src/PHPMailer.php'); // Caminho correto para o PHPMailer.php
+require_once(__DIR__ . '/../src/SMTP.php'); // Se você também estiver usando SMTP
+require_once(__DIR__ . '/../src/Exception.php'); // Se você também estiver usando exceções
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -28,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->Port = 587; // A porta do servidor SMTP
         $mail->CharSet = 'UTF-8';
         $mail->setFrom('hiregeniuses@gmail.com', $nome);
-        $mail->addAddress('eiman5565@uorak.com', 'Administrador'); // E-mail do administrador
+        $mail->addAddress('hiregeniuses@gmail.com', 'Administrador'); // E-mail do administrador
         $mail->isHTML(true);
         
         $mail->Subject = 'Relatório de Bug - ';
@@ -42,5 +41,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } catch (Exception $e) {
         echo "Erro ao enviar o e-mail: {$mail->ErrorInfo}";
     }
-}
+}   echo 'E-mail enviado com sucesso!';
+header("Location: RelatorioDeBug.html"); 
 ?>

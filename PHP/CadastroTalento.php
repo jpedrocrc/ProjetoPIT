@@ -176,7 +176,7 @@ $nome = isset($nomeUsuario['Nome']) ? $nomeUsuario['Nome'] : '';
                                 <div class="col">
                                     <div class="label-area px-0">
                                         <label for="cpf-number" class="form-label">CPF</label>
-                                        <input type="text" class="main-input" id="cpf-number" oninput="mascara_cpf()"
+                                        <input type="text" class="main-input" id="cpf-number" oninput="mascara_cpf()" maxlength="14"
                                             name="cpf">
                                     </div>
                                 </div>
@@ -195,7 +195,7 @@ $nome = isset($nomeUsuario['Nome']) ? $nomeUsuario['Nome'] : '';
                         </div>
                         <div class="label-area">
                             <label for="tel-number" class="form-label">Telefone</label>
-                            <input type="tel" class="main-input" id="tel-number" oninput="mascara_telefone()"
+                            <input type="tel" class="main-input" id="tel-number" oninput="mascara_telefone()" maxlength="15"
                                 name="telefone">
                         </div>
                         <div class="label-area">

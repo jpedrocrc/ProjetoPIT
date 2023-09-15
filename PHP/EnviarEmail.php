@@ -75,4 +75,5 @@ try {
 } else {
     echo 'Nenhum usuário encontrado com o endereço de e-mail fornecido.';
 }
+header("Location: paginaprincipal.html"); 
 ?>

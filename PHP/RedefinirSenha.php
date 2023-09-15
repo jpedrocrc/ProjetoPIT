@@ -54,6 +54,22 @@ if (isset($_GET['token'])) {
     <title>Redefinir Senha</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <style>
+      .password-toggle {
+            position: absolute;
+            right: 150px;
+            top: 33%; 
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+        #erro-senha {
+            color: red;
+        }
+
+        .valido {
+            color: green;
+        }
+    </style>
 </head>
 <body class="bg-image" style="background-image: url('../PHP/mainimg.png'); height: 100vh">
     <div class="card text-white bg-dark position-absolute top-50 start-50 translate-middle" style="max-width: 400px">
@@ -65,11 +81,46 @@ if (isset($_GET['token'])) {
 
             <form action="" method="post">
             <label for="nova_senha" class="form-label">Senha</label> 
-                <input type="password" id="nova_senha" name="nova_senha" required>
+                <input type="password" id="nova_senha" name="nova_senha" required oninput="mostrarRequisitos()">
+                <span class="password-toggle" onclick="alternarVisualizacao()">👁️</span>
+                <div id="requisitos-senha"></div>
                 <div class="mb-3"></div>
                 <button type="submit" class="btn form-control btn-light">Redefinir Senha</button>
             </form>
         </div>
     </div>
+    <script>
+        function alternarVisualizacao() {
+            const senhaInput = document.getElementById("nova_senha");
+            if (senhaInput.type === "password") {
+                senhaInput.type = "text";
+            } else {
+                senhaInput.type = "password";
+            }
+        }
+        function mostrarRequisitos() {
+            var senha = document.getElementById('nova_senha').value;
+            var pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+            var mensagem = "A senha deve conter:<br>";
+            if (!senha.match(/[a-z]/g)) mensagem += "- Pelo menos uma letra minúscula;<br>";
+            else mensagem += "- <span class='valido'>Pelo menos uma letra minúscula;</span><br>";
+
+            if (!senha.match(/[A-Z]/g)) mensagem += "- Pelo menos uma letra maiúscula;<br>";
+            else mensagem += "- <span class='valido'>Pelo menos uma letra maiúscula;</span><br>";
+
+            if (!senha.match(/\d/g)) mensagem += "- Pelo menos um número;<br>";
+            else mensagem += "- <span class='valido'>Pelo menos um número;</span><br>";
+
+            if (!senha.match(/[@$!%*?&]/g)) mensagem += "- Pelo menos um caracter especial (@, $, !, %, *, ?, &);<br>";
+            else mensagem += "- <span class='valido'>Pelo menos um caracter especial (@, $, !, %, *, ?, &);</span><br>";
+
+            if (senha.length >= 8) mensagem += "- <span class='valido'>No mínimo 8 caracteres;</span><br>";
+            else mensagem += "- No mínimo 8 caracteres;<br>";
+
+            document.getElementById('requisitos-senha').innerHTML = mensagem;
+        }
+        mostrarRequisitos();
+    </script>
 </body>
 </html>
