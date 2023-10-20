@@ -26,19 +26,21 @@ class ListaFreelancers
     }
 
     private function MostrarFreelancers($row)
-    {
-        echo '<div class="freelancer">';
-        echo '<h3>' . $row['NOME'] . '</h3>';
-        echo '<p>Email: ' . $row['EMAIL'] . '</p>';
-        echo '<p>Telefone: ' . $row['TELEFONE'] . '</p>';
-        echo '<p>Descrição: ' . $row['DESCRICAO'] . '</p>';
-        echo '<p>Serviço: ' . $row['SERVICO'] . '</p>';
-        echo '<p>Formação: ' . $row['FORMACAO'] . '</p>';
-        echo '<p>Objetivo: ' . $row['OBJETIVO'] . '</p>';
-        echo '<p>Cursos Complementares: ' . $row['CURSOS_COMPLEMENTARES'] . '</p>';
-        echo '<p>experiência: ' . $row['EXPERIENCIA'] . '</p>';
-        echo '</div>';
-    }
+{
+    echo '<div class="freelancer">';
+    echo '<h3>' . $row['NOME'] . '</h3>';
+    echo '<p>Email: ' . $row['EMAIL'] . '</p>';
+    echo '<p>Telefone: ' . $row['TELEFONE'] . '</p>';
+    echo '<p>Descrição: ' . $row['DESCRICAO'] . '</p>';
+    echo '<p>Serviço: ' . $row['SERVICO'] . '</p>';
+    echo '<button class="mostrar-mais-btn" onclick="mostrarMais(this)">Mostrar Mais</button>';
+    echo '<p class="extra-info" style="display:none">Formação: ' . $row['FORMACAO'] . '</p>';
+    echo '<p class="extra-info" style="display:none">Objetivo: ' . $row['OBJETIVO'] . '</p>';
+    echo '<p class="extra-info" style="display:none">Cursos Complementares: ' . $row['CURSOS_COMPLEMENTARES'] . '</p>';
+    echo '<p class="extra-info" style="display:none">Experiência: ' . $row['EXPERIENCIA'] . '</p>';
+    echo '</div>';
+}
+
 
     public function PesquisarFreelancers($busca)
     {

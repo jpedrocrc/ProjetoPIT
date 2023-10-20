@@ -66,6 +66,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       margin: 0;
       font-size: 16px;
     }
+    .freelancer p.extra-info {
+  display: none;
+}
+/* Estilo padrão do botão */
+.mostrar-mais-btn {
+  background-color: #646B71;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.mostrar-mais-btn:hover {
+  background-color: #464d53;
+}
+
+/* Estilo do botão após ser clicado */
+.mostrar-mais-btn.clicked {
+  background-color: #464d53;
+}
+
+/* Estilo do botão quando os detalhes estão visíveis */
+.mostrar-mais-btn.expandido {
+  background-color: #ff9900;
+}
+
+
 
   </style>
 </head>
@@ -157,6 +187,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
     crossorigin="anonymous"></script>
+    <script>
+  function mostrarMais(button) {
+    var details = button.parentNode.querySelectorAll('p.extra-info');
+    for (var i = 0; i < details.length; i++) {
+      details[i].style.display = 'block';
+    }
+    button.style.display = 'none';
+  }
+</script>
+
 </body>
 
 </html>
